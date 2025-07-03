@@ -9,3 +9,8 @@
 ##보안 관련 훈련: 시기 별 유행하는 피싱 문자 및 피싱 내용 안내
 
 ##디지털 적응 및 보안 교육: 간단한 퀴즈 제공
+
+
+
+📒 더 자세한 기획 노트는 아래 링크에서 확인할 수 있습니다:  
+[디지털 헬퍼 마인드맵 보기](https://notebooklm.google.com/notebook/637f90fe-e0c6-4241-b9ec-c28ef916898b?_gl=1*zfnk5p*_ga*NDgxODYxMTQ2LjE3NTEzODc1NjQ.*_ga_W0LDH41ZCB*czE3NTEzODc1NjQkbzEkZzEkdDE3NTEzODc1NjgkajYwJGwwJGgw)
