@@ -62,19 +62,19 @@ for file in os.listdir(json_dir):
                             doc_id = generate_unique_doc_id()
                             db.collection(collection).document(doc_id).set(item)
                         else:
-                            print(f"⚠️ {file}의 항목이 dict가 아님. 건너뜀")
+                            print(f" {file}의 항목이 dict가 아님. 건너뜀")
                             skipped += 1
                             continue
                 else:
-                    print(f"⚠️ {file}은 지원되지 않는 형식입니다.")
+                    print(f" {file}은 지원되지 않는 형식입니다.")
                     skipped += 1
                     continue
 
-                print(f"✅ {collection}/{file} 업로드 완료")
+                print(f" {collection}/{file} 업로드 완료")
                 uploaded += 1
 
             except Exception as e:
-                print(f"❌ {file} 업로드 실패: {e}")
+                print(f" {file} 업로드 실패: {e}")
                 skipped += 1
 
 print(f"\n총 {uploaded}개 업로드 완료, {skipped}개 실패")
