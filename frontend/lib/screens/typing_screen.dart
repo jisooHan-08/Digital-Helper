@@ -33,6 +33,10 @@ class TypingPracticeItem {
 }
 
 class TypingScreen extends StatefulWidget {
+  final String mode; // ✅ 추가: 어떤 연습 모드인지 ('one-letter' 등)
+
+  TypingScreen({required this.mode}); // ✅ 생성자
+
   @override
   _TypingScreenState createState() => _TypingScreenState();
 }
@@ -55,33 +59,38 @@ class _TypingScreenState extends State<TypingScreen> {
   }
 
   Future<void> loadJsonFiles() async {
-    final List<String> assetPaths = [
-      'assets/data/2-1. 50 One-letter Words.json',
-      'assets/data/2-2. 50 Two-letter Words.json',
-      'assets/data/2-3. 50 Three-letter Words.json',
-      'assets/data/2-4. 30 One-sentence Practices.json',
-      'assets/data/2-5. 30 Paragraph Practices.json',
-      'assets/data/2-0. Typing_Practice_Help_Tips.json',
-    ];
+    final Map<String, String> modeToFile = {
+      'one-letter': 'assets/data/2-1. 50 One-letter Words.json',
+      'two-letter': 'assets/data/2-2. 50 Two-letter Words.json',
+      'three-letter': 'assets/data/2-3. 50 Three-letter Words.json',
+      'sentence': 'assets/data/2-4. 30 One-sentence Practices.json',
+      'paragraph': 'assets/data/2-5. 30 Paragraph Practices.json',
+    };
 
-    List<TypingPracticeItem> items = [];
+    final selectedFile = modeToFile[widget.mode];
 
-    for (final path in assetPaths) {
-      try {
-        final jsonStr = await rootBundle.loadString(path);
-        final List<dynamic> jsonList = json.decode(jsonStr);
-        items.addAll(jsonList.map((e) => TypingPracticeItem.fromJson(e)));
-        print("✅ 로딩 성공: $path");
-      } catch (e) {
-        print("❌ JSON 로딩 실패: $path - 오류: $e");
-      }
+    if (selectedFile == null) {
+      print('❌ 유효하지 않은 모드: ${widget.mode}');
+      return;
     }
 
-    setState(() {
-      allItems = items;
-      isLoading = false;
-      print("총 로딩된 문제 수: ${allItems.length}");
-    });
+    try {
+      final jsonStr = await rootBundle.loadString(selectedFile);
+      final List<dynamic> jsonList = json.decode(jsonStr);
+      final List<TypingPracticeItem> items = jsonList
+          .map((e) => TypingPracticeItem.fromJson(e))
+          .toList();
+
+      setState(() {
+        allItems = items;
+        isLoading = false;
+        currentIndex = 0;
+      });
+
+      print("✅ 로딩 성공: $selectedFile - ${items.length}개 항목");
+    } catch (e) {
+      print("❌ JSON 로딩 실패: $selectedFile - 오류: $e");
+    }
   }
 
   void onTextChanged(String value) {
@@ -148,13 +157,9 @@ class _TypingScreenState extends State<TypingScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            "🎉 모든 단계를 마쳤어요! 정말 잘하셨어요! 🎉",
-            style: TextStyle(fontSize: 16),
-          ),
+          content: Text("🎉 모든 단계를 마쳤어요! 정말 잘하셨어요! 🎉"),
           backgroundColor: Colors.green,
           duration: Duration(seconds: 3),
-          behavior: SnackBarBehavior.floating,
         ),
       );
     }
@@ -211,13 +216,6 @@ class _TypingScreenState extends State<TypingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return Scaffold(
-        appBar: AppBar(title: Text('타자 연습')),
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
     if (isLoading || allItems.isEmpty || currentIndex >= allItems.length) {
       return Scaffold(
         appBar: AppBar(title: Text('타자 연습')),
@@ -263,7 +261,6 @@ class _TypingScreenState extends State<TypingScreen> {
                 SizedBox(height: 8),
                 buildTypingOrder(allItems[currentIndex]),
               ],
-
               SizedBox(height: 30),
               Text(
                 "비교 결과:",

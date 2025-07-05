@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 // 각 화면 import
 import 'screens/kiosk_screen.dart';
-import 'screens/typing_screen.dart';
 import 'screens/security_screen.dart';
 import 'screens/quiz_screen.dart';
+import 'screens/typing_mode.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,14 +43,18 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               ElevatedButton(
-                child: Text('타자 연습'),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => TypingScreen()),
+                    MaterialPageRoute(
+                      builder: (_) =>
+                          TypingPracticeModeScreen(), // ✅ 새로운 화면으로 이동
+                    ),
                   );
                 },
+                child: Text("타자 연습"),
               ),
+
               ElevatedButton(
                 child: Text('보안 교육'),
                 onPressed: () {
