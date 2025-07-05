@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: '디지털 소외계층을 위한 디지털 적응 도우미',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
