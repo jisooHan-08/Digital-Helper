@@ -29,4 +29,7 @@ flutter:
     - assets/data/0. Help System on Inactivity.json
     - assets/data/0. On Entering the Main Screen.json
     - assets/data/3. Security Education - Phishing Examples.json
+    - assets/data/4. 50 Security Quiz Questions - Base.json
+    - assets/data/4-0. Security_Education_Quiz_Help_Tips.json
+    - assets/data/4-0. Security_Quiz_Feedback_Messages.json
 
