@@ -55,10 +55,16 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SecurityScreen()),
+                    MaterialPageRoute(
+                      settings: RouteSettings(
+                        name: 'SecurityScreen',
+                      ), // ✅ 이름 부여
+                      builder: (context) => SecurityScreen(),
+                    ),
                   );
                 },
               ),
+
               ElevatedButton(
                 child: Text('보안 퀴즈'),
                 onPressed: () {
