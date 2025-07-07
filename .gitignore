@@ -121,3 +121,6 @@ app.*.symbols
 #!/dev/ci/**/Gemfile.lock
 
 backend/serviceAccountKey.json
+
+# 
+frontend/

@@ -85,11 +85,55 @@
     
 → 각 연습 유형별 오답 피드백은 Firestore 저장 데이터를 기반으로 하며, 누적 데이터에 따라 자동 갱신됨
 
+5. 격려 메시지 출력 기능 구현 (총 3종)
+   : 격려 메시지는 모든 기능에 공통 적용됨: 키오스크(병원, 식당), 타자 연습, 보안 퀴즈
 
-5. .gitignore 설정
+   - 업로드 파일: upload_encouragement_message.py, upload_typing_encouragements.py
+                 upload_security_encouragements.py
+
+출력 API 구현 완료:
+
+  - GET /encouragement?step=... : 시나리오 기반 격려 메시지 조회
+
+  - GET /typing_encouragement/{level}/{result} : 타자 연습 레벨 및 결과 기반 격려 메시지 조회
+
+  - GET /security_encouragement/{result} : 보안 퀴즈 결과 기반 격려 메시지 조회
+
+
+6. .gitignore 설정
    유출되면 안 되는 비공개 키 제외 성공
 
-6. 그 외 수행한 백엔드 주요 작업
+7. FastAPI 기반 API 구현
+
+  앱 연동을 위한 백엔드 API를 FastAPI로 구현 완료
+
+  전체 테스트 주소: http://127.0.0.1:8000/docs  - (Swagger UI)
+
+  [완성된 주요 API 목록 (총 10개)]
+
+    - 병원 키오스크 오답 업로드: POST /upload_hospital_mistake
+      (POST http://127.0.0.1:8000/upload_hospital_mistake)
+    - 식당 키오스크 오답 업로드: POST /upload_restaurant_mistake
+      (http://127.0.0.1:8000/upload_restaurant_mistake)
+    - 타자 연습 오답 업로드: POST /upload_typing_mistake
+      (POST http://127.0.0.1:8000/upload_typing_mistake)
+    - 보안 퀴즈 오답 업로드: POST /upload_security_quiz_mistake
+      (http://127.0.0.1:8000/upload_security_quiz_mistake)
+    - 격려 메시지 업로드: POST /upload_encouragement_message
+      (http://127.0.0.1:8000/upload_encouragement_message)
+    - 타자 격려 메시지 업로드: POST /upload_typing_encouragements
+      (http://127.0.0.1:8000/upload_typing_encouragements)
+    - 보안 격려 메시지 업로드: POST /upload_security_encouragements
+      (http://127.0.0.1:8000/upload_security_encouragements)
+    - 타자 연습 통계 조회: GET /stats/typing_mistake_top3
+      (GET http://127.0.0.1:8000/stats/typing_mistake_top3)
+    - 보안 퀴즈 통계 조회 및 해설: GET /security_quiz_stats
+      (GET http://127.0.0.1:8000/security_quiz_stats)
+    - 격려 메시지 조회: GET /encouragement?step=...
+      (http://127.0.0.1:8000/encouragement?step=201)
+→ FastAPI 문서 자동 생성 페이지에서 모든 테스트 확인 가능: http://127.0.0.1:8000/docs 
+
+7. 그 외 수행한 백엔드 주요 작업
 
    - GitHub 업로드 완료
    -전체 backend 디렉토리 구조 정리 및 commit
