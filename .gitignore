@@ -122,3 +122,7 @@ app.*.symbols
 
 backend/serviceAccountKey.json
 
+.dart_tool/
+build/
+
+
