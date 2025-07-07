@@ -123,4 +123,4 @@ app.*.symbols
 backend/serviceAccountKey.json
 
 # 
-frontend/
+
