@@ -257,7 +257,10 @@
     "step": 131,
     "type": "영수증 및 주문서 출력",
     "ui": {
-      "image": "images/주문서_영수증",
+      "image": [
+        "images/식당 주문서.jpg",
+        "images/식당 영수증.jpg"
+      ],
       "message": "주문서와 영수증이 함께 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -267,7 +270,7 @@
     "step": 132,
     "type": "주문서 출력",
     "ui": {
-      "image": "images/주문서",
+      "image": "images/식당 주문서.jpg",
       "message": "주문서만 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -337,7 +340,10 @@
     "step": 151,
     "type": "영수증 및 주문서 출력",
     "ui": {
-      "image": "images/주문서_영수증",
+      "image": [
+        "images/식당 주문서.jpg",
+        "images/식당 영수증.jpg"
+      ],
       "message": "주문서와 영수증이 함께 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -347,7 +353,7 @@
     "step": 152,
     "type": "주문서 출력",
     "ui": {
-      "image": "images/주문서",
+      "image": "images/식당 주문서.jpg",
       "message": "주문서만 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
