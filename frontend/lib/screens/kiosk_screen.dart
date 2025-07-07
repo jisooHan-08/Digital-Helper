@@ -5,7 +5,7 @@ class KioskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('키오스크 연습')),
-      body: Center(child: Text('여기에 키오스크 기능이 들어갈 거예요')),
+      body: Center(child: Text('키오스크 기능')),
     );
   }
 }

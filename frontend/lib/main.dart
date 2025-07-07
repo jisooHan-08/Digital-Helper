@@ -61,9 +61,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      settings: RouteSettings(
-                        name: 'SecurityScreen',
-                      ), // ✅ 이름 부여
+                      settings: RouteSettings(name: 'SecurityScreen'),
                       builder: (context) => SecurityScreen(),
                     ),
                   );

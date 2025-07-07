@@ -33,7 +33,7 @@ class TypingPracticeItem {
 }
 
 class TypingScreen extends StatefulWidget {
-  final String mode; // ✅ 추가: 어떤 연습 모드인지 ('one-letter' 등)
+  final String mode;
 
   TypingScreen({required this.mode}); // ✅ 생성자
 

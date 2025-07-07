@@ -170,7 +170,7 @@ class _PhishingDetailScreenState extends State<PhishingDetailScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('⚠️ 피싱 경고'),
+        title: Text('⚠️ 피싱 경고 ⚠️'),
         content: Text('이 링크는 위험할 수 있습니다. 절대 클릭하지 마세요!'),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx), child: Text('확인')),
