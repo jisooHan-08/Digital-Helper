@@ -5,6 +5,7 @@ import random
 import string
 
 from firebase_init import db
+from firebase_admin import firestore  # 
 
 # 라우터 객체 생성
 router = APIRouter()
@@ -16,17 +17,16 @@ class TypingMistake(BaseModel):
     question: str
     selected: str
 
-# 사용자 ID 생성 함수 (날짜 + 랜덤 5자리)
+# 사용자 ID 생성 함수
 def generate_user_id():
     date_part = datetime.now().strftime("%Y%m%d")
     random_part = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
     return f"{date_part}_{random_part}"
 
-# POST API: 타자연습 오답 업로드
+# POST API: 타자 연습 오답 업로드
 @router.post("/upload_typing_mistake")
 def upload_typing_mistake(mistake: TypingMistake):
     user_id = generate_user_id()
-
     data = {
         "scenario_id": mistake.scenario_id,
         "step_index": mistake.step_index,
@@ -36,10 +36,10 @@ def upload_typing_mistake(mistake: TypingMistake):
     }
 
     try:
-        db.collection("typing_mistakes").document(user_id).set(data)
-        return {
-            "status": "ok",
-            "user_id": user_id
-        }
+        db.collection("typing_mistakesbackup_byuser").document(user_id).set({
+            "wrong_selections": firestore.ArrayUnion([data])
+        }, merge=True)
+        return {"status": "ok", "user_id": user_id}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
