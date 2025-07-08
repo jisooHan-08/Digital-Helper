@@ -16,7 +16,7 @@ except ValueError:
 db = firestore.client()
 
 # JSON 경로 설정
-json_path = os.path.join("..", "scenario", "data", "0. Help System on Inactivity.json")
+json_path = os.path.join("..", "scenario", "data", "0. 1min Help System on Inactivity.json")
 
 # JSON 로드 및 업로드
 with open(json_path, "r", encoding="utf-8") as f:

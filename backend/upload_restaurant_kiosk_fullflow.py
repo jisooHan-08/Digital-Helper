@@ -15,7 +15,8 @@ except ValueError:
 db = firestore.client()
 
 # JSON 경로
-json_path = os.path.join("..", "scenario", "data", "Restaurant_Kiosk_Receipt_FullFlow_Sorted_WithImagePaths_AndMenuImages.json")
+json_path = os.path.join("..", "scenario", "data", "Restaurant Kiosk.json")
+
 
 # JSON 로드
 with open(json_path, "r", encoding="utf-8") as f:
