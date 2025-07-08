@@ -1,0 +1,6 @@
+build/
+windows/flutter/ephemeral/
+*.dll
+*.pdb
+*.exe
+
