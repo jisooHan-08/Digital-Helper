@@ -7,12 +7,22 @@ from backend.routers.get import (
     get_security_quiz_feedback_message,
     get_top3_typing_mistake_stats,
     get_typing_encouragement,
-    get_typing_feedback_message
+    get_typing_feedback_message,
+    get_hospital_kiosk_mistake_feedback,
+    get_restaurant_kiosk_mistake_feedback,
+    get_top3_restaurant_kiosk_mistakes_by_user,
+    get_security_mistake_feedback,
+    get_top3_security_mistakes,
+    get_security_quiz_question,
+
+
 )
 
 from backend.routers.post import (
     post_security_education_mistake,
-    post_typing_mistake_api
+    post_typing_mistake_api,
+    post_hospital_kiosk_mistake,
+    post_restaurant_kiosk_mistake,
 )
 
 app = FastAPI()
@@ -32,10 +42,19 @@ app.include_router(get_security_quiz_feedback_message.router)
 app.include_router(get_top3_typing_mistake_stats.router)
 app.include_router(get_typing_encouragement.router)
 app.include_router(get_typing_feedback_message.router)
+app.include_router(get_hospital_kiosk_mistake_feedback.router)
+app.include_router(get_restaurant_kiosk_mistake_feedback.router)
+app.include_router(get_top3_restaurant_kiosk_mistakes_by_user.router)
+app.include_router(get_security_mistake_feedback.router)
+app.include_router(get_top3_security_mistakes.router)
+app.include_router(get_security_quiz_question.router)
+
 
 # POST 라우터 등록
 app.include_router(post_typing_mistake_api.router)
 app.include_router(post_security_education_mistake.router)
+app.include_router(post_hospital_kiosk_mistake.router)
+app.include_router(post_restaurant_kiosk_mistake.router)
 
 # 기본 루트 엔드포인트
 @app.get("/")

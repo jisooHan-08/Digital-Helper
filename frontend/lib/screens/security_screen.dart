@@ -1,249 +1,143 @@
-import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class PhishingCase {
-  final int caseId;
-  final String title;
-  final String description;
-  final String phishingType;
-  final List<String> redFlags;
-  final String preventiveTip;
-  final String level;
+class QuizScreen extends StatefulWidget {
+  const QuizScreen({Key? key}) : super(key: key);
 
-  PhishingCase({
-    required this.caseId,
-    required this.title,
-    required this.description,
-    required this.phishingType,
-    required this.redFlags,
-    required this.preventiveTip,
-    required this.level,
-  });
-
-  factory PhishingCase.fromJson(Map<String, dynamic> json) {
-    return PhishingCase(
-      caseId: json['case_id'],
-      title: json['title'],
-      description: json['description'],
-      phishingType: json['phishing_type'],
-      redFlags: List<String>.from(json['red_flags']),
-      preventiveTip: json['preventive_tip'],
-      level: json['level'],
-    );
-  }
-}
-
-class SecurityScreen extends StatefulWidget {
   @override
-  _SecurityScreenState createState() => _SecurityScreenState();
+  State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _SecurityScreenState extends State<SecurityScreen> {
-  late Future<List<PhishingCase>> _casesFuture;
-  List<int> _completedIds = [];
+class _QuizScreenState extends State<QuizScreen> {
+  int currentQuizId = 1;
+  String question = '';
+  List<String> choices = [];
+  String correctAnswer = '';
+  String explanation = '';
+  String? selectedAnswer;
+  bool isAnswerSubmitted = false;
 
   @override
   void initState() {
     super.initState();
-    _casesFuture = loadPhishingCases();
+    loadQuizDataFromAPI();
   }
 
-  Future<List<PhishingCase>> loadPhishingCases() async {
-    final String jsonString = await rootBundle.loadString(
-      'assets/data/3. Security Education - Phishing Examples.json',
-    );
-    final List<dynamic> jsonData = json.decode(jsonString);
-    return jsonData.map((e) => PhishingCase.fromJson(e)).toList();
-  }
+  Future<void> loadQuizDataFromAPI() async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+          'http://localhost:8000/security_quiz/question?quiz_id=$currentQuizId',
+        ),
+      );
 
-  Color getLevelColor(String level) {
-    switch (level.toLowerCase()) {
-      case 'high':
-        return Colors.red;
-      case 'medium':
-        return Colors.orange;
-      case 'low':
-        return Colors.green;
-      default:
-        return Colors.black;
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> json = jsonDecode(response.body);
+        if (json["status"] == "ok") {
+          setState(() {
+            question = json["question"];
+            choices = List<String>.from(json["choices"]);
+            correctAnswer = json["answer"];
+            explanation = json["explanation"];
+            selectedAnswer = null;
+            isAnswerSubmitted = false;
+          });
+        } else if (json["status"] == "end") {
+          setState(() {
+            question = "퀴즈가 종료되었습니다.";
+            choices = [];
+            correctAnswer = '';
+            explanation = '';
+          });
+        }
+      } else {
+        throw Exception("서버 오류");
+      }
+    } catch (e) {
+      print('퀴즈 로딩 실패: $e');
     }
   }
 
-  void _navigateToDetail(int index, List<PhishingCase> cases) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => PhishingDetailScreen(
-          phishingCase: cases[index],
-          onNext: index < cases.length - 1
-              ? () => _navigateToDetail(index + 1, cases)
-              : null,
-          onComplete: () {
-            setState(() {
-              _completedIds.add(cases[index].caseId);
-            });
-          },
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('보안 교육 사례')),
-      body: FutureBuilder<List<PhishingCase>>(
-        future: _casesFuture,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final cases = snapshot.data!;
-            return ListView.builder(
-              itemCount: cases.length,
-              itemBuilder: (context, index) {
-                final item = cases[index];
-                final isCompleted = _completedIds.contains(item.caseId);
-                return ListTile(
-                  title: Text(item.title),
-                  subtitle: Text(item.phishingType),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        item.level.toUpperCase(),
-                        style: TextStyle(
-                          color: getLevelColor(item.level),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      if (isCompleted)
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Icon(Icons.check_circle, color: Colors.green),
-                        ),
-                    ],
-                  ),
-                  onTap: () => _navigateToDetail(index, cases),
-                );
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text('불러오는 중 오류 발생'));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    );
-  }
-}
-
-class PhishingDetailScreen extends StatefulWidget {
-  final PhishingCase phishingCase;
-  final VoidCallback? onNext;
-  final VoidCallback onComplete;
-
-  PhishingDetailScreen({
-    required this.phishingCase,
-    this.onNext,
-    required this.onComplete,
-  });
-
-  @override
-  State<PhishingDetailScreen> createState() => _PhishingDetailScreenState();
-}
-
-class _PhishingDetailScreenState extends State<PhishingDetailScreen> {
-  bool _completed = false;
-
-  void _showSnackBar() {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('🎉 교육을 완료하셨습니다! 잘하셨어요!')));
+  void submitAnswer(String choice) {
     setState(() {
-      _completed = true;
+      selectedAnswer = choice;
+      isAnswerSubmitted = true;
     });
-    widget.onComplete(); // 완료 리스트에 추가
   }
 
-  void _showAlertDialog() {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('⚠️ 피싱 경고 ⚠️'),
-        content: Text('이 링크는 위험할 수 있습니다. 절대 클릭하지 마세요!'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: Text('확인')),
-        ],
-      ),
+  void goToNextQuiz() {
+    setState(() {
+      currentQuizId += 1;
+    });
+    loadQuizDataFromAPI();
+  }
+
+  Widget buildChoiceButton(String choice) {
+    final isCorrect = choice == correctAnswer;
+    final isSelected = choice == selectedAnswer;
+
+    Color getColor() {
+      if (!isAnswerSubmitted) return Colors.blue;
+      if (isSelected && isCorrect) return Colors.green;
+      if (isSelected && !isCorrect) return Colors.red;
+      return Colors.grey;
+    }
+
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: getColor()),
+      onPressed: isAnswerSubmitted ? null : () => submitAnswer(choice),
+      child: Text(choice),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final caseData = widget.phishingCase;
-
     return Scaffold(
-      appBar: AppBar(title: Text(caseData.title)),
+      appBar: AppBar(title: const Text('보안 퀴즈')),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Card(
-          elevation: 4,
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              Text(caseData.description, style: TextStyle(fontSize: 16)),
-              SizedBox(height: 16),
-              Text("📌 피싱 유형: ${caseData.phishingType}"),
-              Text("🚨 위험도: ${caseData.level.toUpperCase()}"),
-              SizedBox(height: 16),
-              Text("🚩 위험 신호", style: TextStyle(fontWeight: FontWeight.bold)),
-              ...caseData.redFlags.map((e) => Text("- $e")),
-              SizedBox(height: 16),
-              Text("✅ 예방 방법", style: TextStyle(fontWeight: FontWeight.bold)),
-              Text(caseData.preventiveTip),
-              SizedBox(height: 24),
-              GestureDetector(
-                onTap: _showAlertDialog,
-                child: Text(
-                  '📎 링크 시뮬레이션 클릭하기',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
+        padding: const EdgeInsets.all(20.0),
+        child: question.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Q$currentQuizId. $question',
+                    style: const TextStyle(fontSize: 20),
                   ),
-                ),
+                  const SizedBox(height: 20),
+                  ...choices.map(buildChoiceButton).toList(),
+                  const SizedBox(height: 30),
+                  if (isAnswerSubmitted)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          selectedAnswer == correctAnswer
+                              ? "정답입니다!"
+                              : "오답입니다  정답: $correctAnswer",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: selectedAnswer == correctAnswer
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          '해설: $explanation',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: goToNextQuiz,
+                          child: const Text('다음 문제'),
+                        ),
+                      ],
+                    ),
+                ],
               ),
-              SizedBox(height: 24),
-              if (!_completed)
-                ElevatedButton(
-                  onPressed: _showSnackBar,
-                  child: Text("이 사례 학습 완료"),
-                ),
-              if (_completed && widget.onNext != null)
-                ElevatedButton(
-                  onPressed: widget.onNext,
-                  child: Text("➡ 다음 학습하기"),
-                ),
-              if (_completed && widget.onNext == null)
-                Text(
-                  "🎊 모든 사례 학습을 완료했습니다!",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              SizedBox(height: 24),
-
-              // ✅ 학습 종료 버튼
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.popUntil(
-                    context,
-                    (route) => route.settings.name == 'SecurityScreen',
-                  );
-                },
-                child: Text("📚 학습 종료하기"),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

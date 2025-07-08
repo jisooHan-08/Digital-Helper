@@ -1,6 +1,4 @@
-# post_security_education_mistake.py
-
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from typing import List
 from datetime import datetime
@@ -9,26 +7,27 @@ from firebase_admin import firestore
 router = APIRouter()
 db = firestore.client()
 
-# 개별 오답 항목
 class MistakeItem(BaseModel):
     case_id: int
     title: str
-    mistake: str  # 어떤 실수/오답을 했는지 설명
+    mistake: str
 
-# 전체 payload
 class MistakePayload(BaseModel):
-    user_id: str
     wrong_cases: List[MistakeItem]
 
-# 오답 저장 API
 @router.post("/security_education/upload_mistake")
-def upload_security_mistake(payload: MistakePayload):
-    doc_ref = db.collection("security_education_mistakes_byuser").document(payload.user_id)
-    
+def upload_security_mistake(request: Request, payload: MistakePayload):
+    user_id = request.headers.get("user-id")
+
+    if not user_id:
+        raise HTTPException(status_code=400, detail="user-id 헤더가 누락되었습니다.")
+
+    doc_ref = db.collection("security_quiz_mistakesbackup_byuser").document(user_id)
+
     doc_ref.set({
-        "user_id": payload.user_id,
+        "user_id": user_id,
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "wrong_cases": [item.dict() for item in payload.wrong_cases]
     })
 
-    return {"message": "오답 기록 저장 완료"}
+    return {"message": f"{user_id} 오답 기록 저장 완료"}
