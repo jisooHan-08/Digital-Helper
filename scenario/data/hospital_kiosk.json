@@ -202,7 +202,7 @@
       },
       {
         "button_text": "카드결제",
-        "next_step": 219
+        "next_step": 222
       }
     ]
   },
@@ -235,7 +235,7 @@
       },
       {
         "button_text": "선택 완료",
-        "next_step": 219
+        "next_step": 222
       }
     ],
     "multi_select": true,
