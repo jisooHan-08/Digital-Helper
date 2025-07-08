@@ -123,14 +123,8 @@
   },
   {
     "step": 102,
-    "instruction": "화면이 켜졌습니다. 메뉴를 확인하고 주문하고 싶은 항목을 터치해보세요.",
-    "helper_message": "한식 또는 음료를 선택 후 원하는 메뉴를 터치해보세요.",
-    "next_step": 103
-  },
-  {
-    "step": 103,
-    "instruction": "메뉴를 선택하면 수량 조절 및 가격 확인 화면이 나옵니다.",
-    "helper_message": "수량은 +, - 버튼으로 변경 가능합니다.",
+    "instruction": "메뉴를 확인하고 원하는 항목을 선택한 후 수량을 조절해 담아보세요.",
+    "helper_message": "한식 또는 음료를 선택하고 메뉴를 터치해 수량을 조절하세요.",
     "next_step": 104
   },
   {
@@ -141,14 +135,8 @@
   },
   {
     "step": 105,
-    "instruction": "장바구니에서 X버튼으로 메뉴를 취소할 수 있습니다.",
-    "helper_message": "원하지 않는 메뉴는 삭제 가능합니다.",
-    "next_step": 106
-  },
-  {
-    "step": 106,
-    "instruction": "주문을 완료했다면 '결제하기' 버튼을 눌러주세요.",
-    "helper_message": "화면 하단의 결제 버튼을 눌러 다음 단계로 넘어갑니다.",
+    "instruction": "장바구니에서 원하지 않는 메뉴는 삭제하고, 결제하기 버튼을 눌러주세요.",
+    "helper_message": "X버튼으로 삭제 가능하며, 하단의 결제 버튼으로 다음 단계로 이동합니다.",
     "next_step": 107
   },
   {
@@ -160,13 +148,7 @@
   {
     "step": 108,
     "instruction": "카드를 넣어주세요.",
-    "helper_message": "화면의 카드 그림을 결제 단말기에 드래그하세요.",
-    "next_step": 110
-  },
-  {
-    "step": 109,
-    "instruction": "체험 종료. 수고하셨습니다.",
-    "helper_message": "키오스크 기본 사용법을 모두 익히셨습니다.",
+    "helper_message": "카드를 단말기에 넣어 결제를 진행해주세요.",
     "next_step": 110
   },
   {
@@ -187,7 +169,10 @@
     "step": 111,
     "type": "영수증 및 주문서 출력",
     "ui": {
-      "image": "images/주문서_영수증",
+      "image": [
+        "images/식당 주문서.jpg",
+        "images/식당 영수증.jpg"
+      ],
       "message": "주문서와 영수증이 함께 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -197,7 +182,7 @@
     "step": 112,
     "type": "주문서 출력",
     "ui": {
-      "image": "images/주문서",
+      "image": "images/식당 주문서.jpg",
       "message": "주문서만 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -223,35 +208,14 @@
   },
   {
     "step": 121,
-    "instruction": "메뉴를 선택하고 수량을 조절해 담아주세요.",
-    "helper_message": "카테고리를 선택하고 메뉴를 눌러 수량을 조절하세요. 선택해야 될 메뉴는 비빔밥 1, 김치찌개 1, 순대국밥 1, 제로콜라 1 입니다.",
-    "next_step": 122
-  },
-  {
-    "step": 122,
-    "instruction": "결제하기 버튼을 눌러 주문을 마무리하세요.",
-    "helper_message": "모든 조건을 충족했는지 다시 한 번 확인해보세요.",
+    "instruction": "메뉴를 선택하고 수량을 조절한 후 담기까지 해주세요.",
+    "helper_message": "비빔밥 1, 김치찌개 1, 순대국밥 1, 제로콜라 1을 선택해 담아주세요.",
     "next_step": 123
   },
   {
-    "step": 123,
-    "instruction": "매장식사 또는 포장을 선택해주세요.",
-    "helper_message": "문제 조건에 따라 '매장식사'를 선택하세요.",
-    "next_step": 124
-  },
-  {
-    "step": 124,
-    "instruction": "카드를 넣어 결제를 완료해주세요.",
-    "helper_message": "카드 그림을 단말기에 드래그하여 결제를 진행하세요.",
-    "next_step": 130
-  },
-  {
-    "step": 125,
-    "instruction": "미션 완료! 수고하셨습니다.",
-    "helper_message": "정확하게 주문하셨어요!",
-    "buttons": [
-      "키오스크 연습하기 화면으로 돌아가기"
-    ],
+    "step": 122,
+    "instruction": "매장식사를 선택하고 결제를 완료해주세요.",
+    "helper_message": "카드를 단말기에 넣어 결제를 진행해주세요.",
     "next_step": 130
   },
   {
@@ -272,7 +236,10 @@
     "step": 131,
     "type": "영수증 및 주문서 출력",
     "ui": {
-      "image": "images/주문서_영수증",
+      "image": [
+        "images/식당 주문서.jpg",
+        "images/식당 영수증.jpg"
+      ],
       "message": "주문서와 영수증이 함께 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -282,7 +249,7 @@
     "step": 132,
     "type": "주문서 출력",
     "ui": {
-      "image": "images/주문서",
+      "image": "images/식당 주문서.jpg",
       "message": "주문서만 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -296,7 +263,7 @@
       "처음으로 돌아가기"
     ],
     "next_step": {
-      "처음으로 돌아가기": 120
+      "처음으로 돌아가기": 0
     }
   },
   {
@@ -305,32 +272,21 @@
     "instruction": "자유롭게 메뉴를 선택하고 결제를 체험해보세요.",
     "helper_message": "홈버튼을 누르면 언제든 메인화면으로 돌아갈 수 있어요.",
     "buttons": [
-      "키오스크 연습하기 화면으로 돌아가기"
+      "홈버튼"
     ],
-    "next_step": 150
+    "next_step": 141,
+    "홈버튼": 0
   },
   {
     "step": 141,
-    "instruction": "메뉴를 선택하고 수량을 조절해 담아주세요.",
-    "helper_message": "한식 또는 음료를 선택하고 원하는 메뉴를 눌러 수량을 조절하세요.",
-    "next_step": 142
-  },
-  {
-    "step": 142,
-    "instruction": "결제하기 버튼을 눌러 주문을 마무리하세요.",
-    "helper_message": "주문이 완료되었으면 결제하기 버튼을 눌러주세요.",
+    "instruction": "메뉴를 선택하고 수량을 조절해 담은 후 결제를 준비하세요.",
+    "helper_message": "한식 또는 음료를 선택 후 원하는 메뉴를 담아주세요.",
     "next_step": 143
   },
   {
-    "step": 143,
-    "instruction": "매장식사 또는 포장을 선택해주세요.",
-    "helper_message": "원하는 이용 방식을 선택해주세요.",
-    "next_step": 144
-  },
-  {
-    "step": 144,
-    "instruction": "카드를 넣어 결제를 완료해주세요.",
-    "helper_message": "카드를 화면의 단말기에 드래그하여 결제를 체험하세요.",
+    "step": 142,
+    "instruction": "매장식사 또는 포장을 선택하고 결제를 완료하세요.",
+    "helper_message": "카드를 단말기에 넣어 결제를 진행해주세요.",
     "next_step": 150
   },
   {
@@ -351,7 +307,10 @@
     "step": 151,
     "type": "영수증 및 주문서 출력",
     "ui": {
-      "image": "images/주문서_영수증",
+      "image": [
+        "images/식당 주문서.jpg",
+        "images/식당 영수증.jpg"
+      ],
       "message": "주문서와 영수증이 함께 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -361,7 +320,7 @@
     "step": 152,
     "type": "주문서 출력",
     "ui": {
-      "image": "images/주문서",
+      "image": "images/식당 주문서.jpg",
       "message": "주문서만 출력됩니다."
     },
     "helper_message": "출력물을 꼭 가져가세요.",
@@ -375,7 +334,7 @@
       "처음으로 돌아가기"
     ],
     "next_step": {
-      "처음으로 돌아가기": 140
+      "처음으로 돌아가기": 0
     }
   }
 ]
