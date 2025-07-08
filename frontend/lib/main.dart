@@ -34,7 +34,6 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                child: Text('키오스크 연습'),
                 onPressed: () {
                   Navigator.push(
                     context,
