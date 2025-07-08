@@ -1,0 +1,1574 @@
+[
+  {
+    "step": 200,
+    "type": "병원 키오스크 메인",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "options": [
+        "기본 사용법 알아보기",
+        "미션수행으로 연습하기",
+        "자유학습하기"
+      ],
+      "helper_message": "원하는 병원 학습 모드를 선택해주세요."
+    },
+    "next": {
+      "기본 사용법 알아보기": 210,
+      "미션수행으로 연습하기": 305,
+      "자유학습하기": 403
+    },
+    "helper_message": "원하는 병원 학습 모드를 선택해주세요."
+  },
+  {
+    "step": 210,
+    "type": "기본 사용법 - 병원 유형 선택",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "options": [
+        "개인병원",
+        "종합병원"
+      ],
+      "helper_message": "병원 유형을 선택해주세요."
+    },
+    "helper_message": "병원 유형을 선택해주세요.",
+    "개인병원": 211,
+    "종합병원": 230
+  },
+  {
+    "step": 211,
+    "type": "개인병원 접수 시작",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "본인의 전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크박스에 체크하지 않으면 다음 단계로 진행할 수 없어요."
+    },
+    "validation": {
+      "checkbox": true
+    },
+    "helper_message": "본인의 전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크박스에 체크하지 않으면 다음 단계로 진행할 수 없어요.",
+    "next_step": 212
+  },
+  {
+    "step": 212,
+    "type": "환자 선택",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "options": [
+        "이*숙(**년생)|여자|최근진료일|202*.07.02"
+      ],
+      "helper_message": "접수자 정보에 있는 이름이 맞는지 확인하고 접수할 환자를 선택해주세요."
+    },
+    "helper_message": "접수자 정보에 있는 이름이 맞는지 확인하고 접수할 환자를 선택해주세요.",
+    "next_step": 213
+  },
+  {
+    "step": 213,
+    "type": "진료실 선택",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "checkbox": "2진료실|류** 원장",
+      "helper_message": "진료를 받을 진료실을 선택해주세요."
+    },
+    "helper_message": "진료를 받을 진료실을 선택해주세요.",
+    "next_step": 214
+  },
+  {
+    "step": 214,
+    "type": "접수 정보 확인",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "info": {
+        "이름": "이*숙",
+        "성별": "여성",
+        "생년월일": "510806",
+        "전화번호": "(입력된 번호)",
+        "진료실": "2진료실"
+      },
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "접수된 정보가 맞는지 확인하고 입력완료 버튼을 눌러주세요."
+    },
+    "helper_message": "접수된 정보가 맞는지 확인하고 입력완료 버튼을 눌러주세요.",
+    "next_step": 215
+  },
+  {
+    "step": 215,
+    "type": "영수증 여부 확인",
+    "instruction": "영수증을 출력하시겠습니까?",
+    "options": [
+      "예",
+      "아니오"
+    ],
+    "next": {
+      "예": 216,
+      "아니오": 218
+    },
+    "helper_message": "영수증이 필요하면 '예', 아니면 '아니오'를 선택하세요."
+  },
+  {
+    "step": 216,
+    "type": "접수증 및 영수증 출력",
+    "ui": {
+      "images": [
+        {
+          "image": "images/병원 접수증.png",
+          "message": "접수증이 출력됩니다."
+        },
+        {
+          "image": "images/병원영수증.jpg",
+          "message": "영수증이 출력됩니다."
+        }
+      ]
+    },
+    "helper_message": "출력물을 모두 챙기세요.",
+    "next_step": 219
+  },
+  {
+    "step": 218,
+    "type": "접수증 출력",
+    "ui": {
+      "image": "images/병원 접수증.jpg",
+      "message": "접수증만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 219
+  },
+  {
+    "step": 219,
+    "type": "개인병원 수납 시작",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "본인의 전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크박스에 체크하지 않으면 다음 단계로 진행할 수 없어요."
+    },
+    "validation": {
+      "checkbox": true
+    },
+    "helper_message": "본인의 전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크박스에 체크하지 않으면 다음 단계로 진행할 수 없어요.",
+    "next_step": 220
+  },
+  {
+    "step": 220,
+    "type": "수납 결제 정보 확인",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "info": {
+        "진료일자": "202*.07.06",
+        "결제금액": "5400원",
+        "처방전": "출력",
+        "보험제출서류": "선택하기"
+      },
+      "buttons": [
+        "선택하기",
+        "카드결제"
+      ],
+      "helper_message": "보험 제출 제출용 서류가 필요한 경우 발급을 위해 선택하기 버튼을 눌러주세요."
+    },
+    "helper_message": "보험 제출용 서류가 필요한 경우 발급을 위해 보험 제출 서류 선택하기 버튼을 눌러주세요.",
+    "situation": "수납 결제 정보 확인",
+    "displayed_text": "수납 정보를 확인하고 필요 시 보험 서류를 선택하세요.",
+    "additional_instruction": "진료일자, 결제금액, 처방전 출력 여부, 보험 제출 서류 등의 정보를 화면에 표시합니다.",
+    "options": [
+      {
+        "button_text": "보험 제출 서류 선택하기",
+        "next_step": 218
+      },
+      {
+        "button_text": "카드결제",
+        "next_step": 219
+      }
+    ]
+  },
+  {
+    "step": 221,
+    "type": "보험서류 선택",
+    "ui": {
+      "options": [
+        "진료비영수증",
+        "진료비세부내역서",
+        "환자보관용처방전"
+      ],
+      "multi_select": true,
+      "buttons": [
+        "선택완료"
+      ]
+    },
+    "helper_message": "필요한 서류를 선택하고 선택 완료 버튼을 눌러주세요.",
+    "situation": "보험서류 선택",
+    "displayed_text": "필요한 서류를 선택하고 선택 완료 버튼을 눌러주세요.",
+    "options": [
+      {
+        "button_text": "진료비영수증"
+      },
+      {
+        "button_text": "진료비세부내역서"
+      },
+      {
+        "button_text": "환자보관용처방전"
+      },
+      {
+        "button_text": "선택 완료",
+        "next_step": 219
+      }
+    ],
+    "multi_select": true,
+    "additional_instruction": "선택 완료 시 '결제하시겠습니까?' 문구와 함께 예 버튼이 표시됩니다."
+  },
+  {
+    "step": 222,
+    "situation": "카드 결제 - 카드 삽입 안내",
+    "instruction": "결제 단말기 안에 카드를 넣어주세요.",
+    "helper_message": "카드 이미지를 눌러보세요. 현금 결제의 경우 키오스크 사용 빈도가 적으므로 연습은 제공되지 않습니다.",
+    "images": [
+      "images/images/card_reader.png",
+      "images/images/sample_credit_card.jpg"
+    ],
+    "next_step": 223
+  },
+  {
+    "step": 223,
+    "situation": "결제 버튼 클릭 안내",
+    "instruction": "결제하기 버튼을 눌러주세요.",
+    "helper_message": "결제를 진행하려면 '결제하기' 버튼을 눌러주세요.",
+    "options": [
+      {
+        "label": "결제하기",
+        "next_step": 224
+      }
+    ]
+  },
+  {
+    "step": 224,
+    "situation": "결제 진행 중",
+    "instruction": "결제 중입니다... 잠시만 기다려주세요.",
+    "helper_message": "결제가 처리되고 있습니다. 완료 후 안내 메시지가 나타납니다.",
+    "next_step": 225
+  },
+  {
+    "step": 225,
+    "situation": "결제 완료",
+    "instruction": "결제가 완료되었습니다. 감사합니다.",
+    "helper_message": "결제가 정상적으로 완료되었습니다. 이제 영수증 출력 여부를 선택해주세요.",
+    "next_step": 226,
+    "end_scenario": false,
+    "end": false
+  },
+  {
+    "step": 226,
+    "type": "영수증 출력 여부 확인",
+    "instruction": "영수증을 출력하시겠습니까?",
+    "options": [
+      "예",
+      "아니오"
+    ],
+    "next": {
+      "예": 227,
+      "아니오": 228
+    },
+    "helper_message": "필요 시 영수증을 출력할 수 있습니다. 원하시면 '예', 그렇지 않으면 '아니오'를 선택해주세요."
+  },
+  {
+    "step": 227,
+    "type": "영수증 및 처방전 출력",
+    "ui": {
+      "images": [
+        "images/병원영수증.jpg",
+        "images/처방전.png"
+      ],
+      "message": "먼저 영수증이 출력되고, 이어서 처방전이 출력됩니다."
+    },
+    "helper_message": "출력물이 2장 나옵니다. 영수증과 처방전을 모두 챙기세요.",
+    "next_step": 210,
+    "end_scenario": false,
+    "end": false
+  },
+  {
+    "step": 228,
+    "type": "처방전만 출력",
+    "ui": {
+      "image": "images/처방전.png",
+      "message": "처방전만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 210,
+    "end_scenario": false,
+    "end": false
+  },
+  {
+    "step": 230,
+    "type": "종합병원 접수 시작",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "본인의 전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크박스에 체크하지 않으면 다음 단계로 진행할 수 없어요."
+    },
+    "validation": {
+      "checkbox": true
+    },
+    "helper_message": "본인의 전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크박스에 체크하지 않으면 다음 단계로 진행할 수 없어요.",
+    "next_step": 231,
+    "홈버튼": 0,
+    "이전화면으로": 210
+  },
+  {
+    "step": 231,
+    "type": "접수자 선택",
+    "ui": {
+      "text": "접수할 환자를 선택해주세요.",
+      "list": [
+        "이*숙(**년생) | 여자 | 최근진료일 | 202*.07.02"
+      ],
+      "helper_message": "접수자 정보에 있는 이름이 맞는지 확인하고 접수할 환자를 선택해주세요."
+    },
+    "helper_message": "접수자 정보에 있는 이름이 맞는지 확인하고 접수할 환자를 선택해주세요.",
+    "end": false,
+    "next_step": 232
+  },
+  {
+    "step": 232,
+    "type": "접수 정보 확인",
+    "ui": {
+      "text": "아래 접수 정보를 확인해주세요.",
+      "info": {
+        "이름": "이*숙",
+        "성별": "여성",
+        "생년월일": "510806",
+        "전화번호": "입력된 번호",
+        "진료실": "2진료실"
+      },
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "접수 정보를 확인하고 입력 완료 버튼을 눌러주세요."
+    },
+    "helper_message": "접수 정보를 확인하고 입력 완료 버튼을 눌러주세요.",
+    "next_step": 7321,
+    "이전화면으로": 231
+  },
+  {
+    "step": 7321,
+    "type": "영수증 출력 여부 확인",
+    "instruction": "영수증을 출력하시겠습니까?",
+    "options": [
+      "예",
+      "아니오"
+    ],
+    "next": {
+      "예": 7322,
+      "아니오": 7323
+    },
+    "helper_message": "영수증이 필요하면 '예', 아니면 '아니오'를 선택하세요."
+  },
+  {
+    "step": 7322,
+    "type": "접수증 및 영수증 출력",
+    "ui": {
+      "images": [
+        "images/병원 접수증.jpg",
+        "images/병원영수증.jpg"
+      ],
+      "message": "먼저 접수증이 출력되고, 이어서 영수증이 출력됩니다."
+    },
+    "helper_message": "출력물이 2장 나옵니다. 접수증과 영수증을 모두 챙기세요.",
+    "next_step": 234
+  },
+  {
+    "step": 7323,
+    "type": "접수증만 출력",
+    "ui": {
+      "image": "images/병원 접수증.jpg",
+      "message": "접수증만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 234
+  },
+  {
+    "step": 234,
+    "type": "수납 선택 유도",
+    "ui": {
+      "text": "진료비를 내기 위해 수납 버튼을 눌러주세요.",
+      "buttons": [
+        "수납"
+      ]
+    },
+    "helper_message": "진료비를 내기 위해 수납 버튼을 눌러주세요.",
+    "next_step": 235
+  },
+  {
+    "step": 235,
+    "type": "바코드 스캔",
+    "ui": {
+      "text": "접수증을 가지고 계신 분은 바코드를 스캔해주세요.",
+      "image": [
+        "images/barcode_scanner.png",
+        "images/병원 접수증.jpg"
+      ],
+      "helper_message": "접수증에 인쇄된 바코드를 바코드 스캐너에 읽혀주세요."
+    },
+    "helper_message": "접수증에 인쇄된 바코드를 바코드 스캐너에 읽혀주세요.",
+    "next_step": 236
+  },
+  {
+    "step": 236,
+    "type": "수납 결제 정보 확인",
+    "ui": {
+      "info": {
+        "진료일자": "202*.07.06",
+        "결제금액": "5400원",
+        "처방전": "출력",
+        "보험제출서류": "선택하기"
+      },
+      "buttons": [
+        "선택하기",
+        "카드결제"
+      ],
+      "helper_message": "보험 제출 제출용 서류가 필요한 경우 발급을 위해 선택하기 버튼을 눌러주세요."
+    },
+    "helper_message": "보험 제출 제출용 서류가 필요한 경우 발급을 위해 선택하기 버튼을 눌러주세요.",
+    "next_step": 237
+  },
+  {
+    "step": 237,
+    "type": "보험서류 선택",
+    "ui": {
+      "options": [
+        "진료비영수증",
+        "진료비세부내역서",
+        "환자보관용처방전"
+      ],
+      "multi_select": true,
+      "buttons": [
+        "선택완료"
+      ],
+      "helper_message": "필요한 서류를 선택하고 선택 완료 버튼을 눌러주세요."
+    },
+    "helper_message": "필요한 서류를 선택하고 선택 완료 버튼을 눌러주세요.",
+    "next_step": 238
+  },
+  {
+    "step": 238,
+    "type": "카드결제",
+    "ui": {
+      "image": "images/sample_credit_card.jpg",
+      "image": "images/card_reader.png",
+      "message": "카드를 클릭하면 결제됩니다."
+    },
+    "end": false,
+    "helper_message": "카드를 클릭하면 결제됩니다.",
+    "next_step": 239
+  },
+  {
+    "step": 239,
+    "type": "영수증 출력 여부 선택",
+    "ui": {
+      "text": "영수증을 출력하시겠습니까?",
+      "buttons": [
+        "예",
+        "아니오"
+      ],
+      "helper_message": "영수증 출력이 필요한 경우 '예'를 선택하세요."
+    },
+    "helper_message": "영수증 출력이 필요한 경우 '예'를 선택하세요.",
+    "options": [
+      {
+        "button_text": "예",
+        "next_step": 240
+      },
+      {
+        "button_text": "아니오",
+        "next_step": 241
+      }
+    ]
+  },
+  {
+    "step": 240,
+    "type": "영수증 및 처방전 출력",
+    "ui": {
+      "images": [
+        "images/병원영수증.jpg",
+        "images/처방전.png"
+      ],
+      "message": "먼저 영수증이 출력되고, 이어서 처방전이 출력됩니다.",
+      "buttons": [
+        "화면에 돌아가기"
+      ]
+    },
+    "helper_message": "출력물이 2장 나옵니다. 영수증과 처방전을 모두 챙기세요.",
+    "options": [
+      {
+        "label": "화면에 돌아가기",
+        "next_step": 200
+      }
+    ],
+    "end_scenario": true,
+    "end": false
+  },
+  {
+    "step": 241,
+    "type": "처방전만 출력",
+    "ui": {
+      "image": "images/처방전.png",
+      "message": "처방전만 출력됩니다.",
+      "buttons": [
+        "화면에 돌아가기"
+      ]
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "options": [
+      {
+        "label": "화면에 돌아가기",
+        "next_step": 200
+      }
+    ],
+    "end_scenario": true,
+    "end": false
+  },
+  {
+    "step": 305,
+    "type": "미션수행 - 병원 유형 선택",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "options": [
+        "개인병원",
+        "종합병원"
+      ]
+    },
+    "next": {
+      "홈버튼": 0,
+      "개인병원": 306,
+      "종합병원": 326
+    },
+    "helper_message": "어떤 병원에서 미션을 수행할지 선택하세요."
+  },
+  {
+    "step": 306,
+    "type": "미션 시작 화면 (개인병원)",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "text": "1.전화번호로 접수하기, 2.진료실 선택, 3.접수증 출력 후 접수 완료, 4.진료비 확인 후 진료비 영수증 서류만 출력해 수납 완료를 순서대로 이행해주세요.",
+      "buttons": [
+        "학습하기"
+      ],
+      "helper_message": "도움말 버튼을 클릭하면 현재 미션 달성 정도와 남은 조건을 확인하실 수 있습니다."
+    },
+    "helper_message": "도움말 버튼을 클릭하면 현재 미션 달성 정도와 남은 조건을 확인하실 수 있습니다.",
+    "next_step": 307
+  },
+  {
+    "step": 307,
+    "type": "개인병원 접수 시작",
+    "ui": {
+      "text": "이제 시작해주세요.",
+      "buttons": [
+        "접수"
+      ]
+    },
+    "helper_message": "이제 시작해주세요.",
+    "next_step": 308
+  },
+  {
+    "step": 308,
+    "type": "전화번호 입력",
+    "ui": {
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다."
+    },
+    "validation": {
+      "checkbox": true
+    },
+    "helper_message": "전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다.",
+    "next_step": 309
+  },
+  {
+    "step": 309,
+    "type": "접수자 선택",
+    "ui": {
+      "list": [
+        "이*숙(**년생) | 여자 | 최근진료일 | 202*.07.02"
+      ],
+      "helper_message": "접수자 정보를 확인하고 선택해주세요."
+    },
+    "helper_message": "접수자 정보를 확인하고 선택해주세요.",
+    "next_step": 310
+  },
+  {
+    "step": 310,
+    "type": "진료실 선택",
+    "ui": {
+      "text": "접수할 진료실을 선택해주세요.",
+      "checkbox": "2진료실 | 류** 원장",
+      "helper_message": "진료실을 선택해주세요."
+    },
+    "helper_message": "진료실을 선택해주세요.",
+    "next_step": 311
+  },
+  {
+    "step": 311,
+    "type": "접수 정보 확인",
+    "ui": {
+      "info": {
+        "이름": "이*숙",
+        "성별": "여성",
+        "생년월일": "510806",
+        "전화번호": "입력된 번호",
+        "진료실": "2진료실"
+      },
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "접수 정보를 확인하고 입력 완료 버튼을 눌러주세요."
+    },
+    "helper_message": "접수 정보를 확인하고 입력 완료 버튼을 눌러주세요.",
+    "next_step": 312
+  },
+  {
+    "step": 312,
+    "type": "영수증 출력 여부 확인",
+    "instruction": "접수증과 함께 영수증도 출력하시겠습니까?",
+    "options": [
+      "예",
+      "아니오"
+    ],
+    "next": {
+      "예": 313,
+      "아니오": 314
+    },
+    "helper_message": "영수증이 필요하시면 '예', 필요 없으시면 '아니오'를 선택해주세요."
+  },
+  {
+    "step": 313,
+    "type": "접수증 및 영수증 출력",
+    "ui": {
+      "images": [
+        {
+          "image": "images/병원 접수증.jpg",
+          "message": "접수증이 출력됩니다."
+        },
+        {
+          "image": "images/병원영수증.jpg",
+          "message": "영수증이 출력됩니다."
+        }
+      ]
+    },
+    "helper_message": "출력물을 모두 챙기세요.",
+    "next_step": 315
+  },
+  {
+    "step": 314,
+    "type": "접수증만 출력",
+    "ui": {
+      "image": "images/병원 접수증.jpg",
+      "message": "접수증만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 315
+  },
+  {
+    "step": 315,
+    "type": "수납 선택 유도",
+    "ui": {
+      "text": "진료비를 내기 위해 수납 버튼을 눌러주세요.",
+      "buttons": [
+        "수납"
+      ]
+    },
+    "helper_message": "진료비를 내기 위해 수납 버튼을 눌러주세요.",
+    "next_step": 316
+  },
+  {
+    "step": 316,
+    "type": "전화번호 입력 (수납)",
+    "ui": {
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다."
+    },
+    "validation": {
+      "checkbox": true
+    },
+    "helper_message": "전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다.",
+    "next_step": 317
+  },
+  {
+    "step": 317,
+    "type": "수납 정보 확인",
+    "ui": {
+      "info": {
+        "진료일자": "202*.07.06",
+        "결제금액": "5400원",
+        "처방전": "출력",
+        "보험제출서류": "선택하기"
+      },
+      "buttons": [
+        "선택하기",
+        "카드결제"
+      ],
+      "helper_message": "진료비 영수증 서류만 선택하고 카드결제를 눌러주세요."
+    },
+    "helper_message": "진료비 영수증 서류만 선택하고 카드결제를 눌러주세요.",
+    "next_step": 318
+  },
+  {
+    "step": 318,
+    "type": "보험 서류 선택",
+    "ui": {
+      "options": [
+        "진료비영수증"
+      ],
+      "buttons": [
+        "선택완료"
+      ]
+    },
+    "next_step": 319
+  },
+  {
+    "step": 319,
+    "type": "카드 결제 및 완료",
+    "ui": {
+      "image": "images/sample_credit_card.jpg",
+      "image": "images/card_reader.png",
+      "message": "카드를 클릭하면 결제됩니다.",
+      "final_message": "수고하셨습니다. 미션 성공입니다."
+    },
+    "end": false,
+    "helper_message": "카드를 클릭하면 결제됩니다.",
+    "next_step": 320
+  },
+  {
+    "step": 320,
+    "type": "영수증 출력 여부 확인",
+    "instruction": "영수증을 출력하시겠습니까?",
+    "options": [
+      "예",
+      "아니오"
+    ],
+    "next": {
+      "예": 321,
+      "아니오": 322
+    },
+    "helper_message": "필요 시 영수증을 출력할 수 있습니다. 원하시면 '예', 그렇지 않으면 '아니오'를 선택해주세요."
+  },
+  {
+    "step": 321,
+    "type": "영수증 및 처방전 출력",
+    "ui": {
+      "images": [
+        "images/병원영수증.jpg",
+        "images/처방전.png"
+      ],
+      "message": "먼저 영수증이 출력되고, 이어서 처방전이 출력됩니다."
+    },
+    "helper_message": "출력물이 2장 나옵니다. 영수증과 처방전을 모두 챙기세요.",
+    "next_step": 323,
+    "end": false
+  },
+  {
+    "step": 322,
+    "type": "처방전만 출력",
+    "ui": {
+      "image": "images/처방전.png",
+      "message": "처방전만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 323,
+    "end": false
+  },
+  {
+    "step": 323,
+    "type": "미션 완료",
+    "ui": {
+      "message": "수고하셨습니다. 미션을 성공적으로 완료하셨습니다!"
+    },
+    "helper_message": "모든 절차가 완료되었습니다. 키오스크 사용법을 잘 익히셨습니다.",
+    "end_scenario": true,
+    "next_step": 305,
+    "end": true
+  },
+  {
+    "step": 326,
+    "type": "미션 시작 화면 (종합병원)",
+    "ui": {
+      "top": [
+        "홈버튼"
+      ],
+      "text": "1.전화번호로 접수하기, 2.접수증 출력 후 접수 완료, 3.접수증 바코드로 진료 이력을 조회, 4.진료비 확인 후 진료비 영수증 서류만 출력해 수납 완료를 순서대로 이행해주세요.",
+      "buttons": [
+        "학습하기"
+      ],
+      "helper_message": "도움말 버튼을 클릭하면 현재 미션 달성 정도와 남은 조건을 확인하실 수 있습니다."
+    },
+    "helper_message": "도움말 버튼을 클릭하면 현재 미션 달성 정도와 남은 조건을 확인하실 수 있습니다.",
+    "next_step": 327
+  },
+  {
+    "step": 327,
+    "type": "종합병원 접수 시작",
+    "ui": {
+      "text": "이제 시작해주세요.",
+      "buttons": [
+        "접수"
+      ]
+    },
+    "helper_message": "이제 시작해주세요.",
+    "next_step": 328
+  },
+  {
+    "step": 328,
+    "type": "전화번호 입력",
+    "ui": {
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다."
+    },
+    "validation": {
+      "checkbox": true
+    },
+    "helper_message": "전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다.",
+    "next_step": 329
+  },
+  {
+    "step": 329,
+    "type": "접수자 선택",
+    "ui": {
+      "list": [
+        "이*숙(**년생) | 여자 | 최근진료일 | 202*.07.02"
+      ],
+      "helper_message": "접수자 정보를 확인하고 선택해주세요."
+    },
+    "helper_message": "접수자 정보를 확인하고 선택해주세요.",
+    "next_step": 330
+  },
+  {
+    "step": 330,
+    "type": "접수 정보 확인",
+    "ui": {
+      "info": {
+        "이름": "이*숙",
+        "성별": "여성",
+        "생년월일": "510806",
+        "전화번호": "입력된 번호",
+        "진료실": "2진료실"
+      },
+      "buttons": [
+        "이전화면으로",
+        "입력완료"
+      ],
+      "helper_message": "접수 정보를 확인하고 입력 완료 버튼을 눌러주세요."
+    },
+    "helper_message": "접수 정보를 확인하고 입력 완료 버튼을 눌러주세요.",
+    "next_step": 331
+  },
+  {
+    "step": 331,
+    "type": "영수증 출력 여부 확인",
+    "instruction": "영수증을 출력하시겠습니까?",
+    "options": [
+      "예",
+      "아니오"
+    ],
+    "next": {
+      "예": 332,
+      "아니오": 333
+    },
+    "helper_message": "접수증과 함께 영수증도 출력하시겠습니까? 필요하면 '예', 그렇지 않으면 '아니오'를 선택해주세요."
+  },
+  {
+    "step": 332,
+    "type": "접수증 및 영수증 출력",
+    "ui": {
+      "images": [
+        {
+          "image": "images/병원 접수증.jpg",
+          "message": "접수증이 출력됩니다."
+        },
+        {
+          "image": "images/병원영수증.jpg",
+          "message": "영수증이 출력됩니다."
+        }
+      ]
+    },
+    "helper_message": "접수증과 영수증 모두 출력되었습니다. 출력물을 꼭 챙기세요.",
+    "next_step": 334,
+    "end": false
+  },
+  {
+    "step": 333,
+    "type": "접수증 출력",
+    "ui": {
+      "image": "images/병원 접수증.jpg",
+      "message": "접수증만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 334,
+    "end": false
+  },
+
+  {
+    "step": 334,
+    "type": "접수증 바코드 스캔 안내",
+    "ui": {
+      "text": "접수증을 가지고 계신 분은 바코드를 스캔해주세요.",
+      "image": [
+        "images/barcode_scanner.png",
+        "images/병원 접수증.jpg"
+      ],
+      "helper_message": "접수증에 인쇄된 바코드를 바코드 스캐너에 읽혀주세요."
+    },
+    "helper_message": "접수증에 인쇄된 바코드를 바코드 스캐너에 읽혀주세요.",
+    "next_step": 335
+  },
+  {
+    "step": 335,
+    "type": "수납 정보 확인",
+    "ui": {
+      "info": {
+        "진료일자": "202*.07.06",
+        "결제금액": "5400원",
+        "처방전": "출력",
+        "보험제출서류": "선택하기"
+      },
+      "buttons": [
+        "선택하기",
+        "카드결제"
+      ],
+      "helper_message": "진료비 영수증 서류만 선택하고 카드결제를 눌러주세요."
+    },
+    "helper_message": "진료비 영수증 서류만 선택하고 카드결제를 눌러주세요.",
+    "next_step": 336
+  },
+  {
+    "step": 336,
+    "type": "보험 서류 선택",
+    "ui": {
+      "options": [
+        "진료비영수증"
+      ],
+      "buttons": [
+        "선택완료"
+      ]
+    },
+    "next_step": 337
+  },
+  {
+    "step": 337,
+    "type": "카드 결제 완료",
+    "ui": {
+      "image": "images/sample_credit_card.jpg",
+      "image": "images/card_reader.png",
+      "message": "카드를 클릭하면 결제됩니다."
+    },
+    "helper_message": "카드를 클릭하면 결제됩니다.",
+    "next_step": 338
+  },
+  {
+    "step": 338,
+    "type": "영수증 출력 여부 확인",
+    "instruction": "영수증을 출력하시겠습니까?",
+    "options": [
+      "예",
+      "아니오"
+    ],
+    "next": {
+      "예": 339,
+      "아니오": 340
+    },
+    "helper_message": "필요 시 영수증을 출력할 수 있습니다. '예'를 누르면 영수증과 처방전을 모두 출력합니다."
+  },
+  {
+    "step": 339,
+    "type": "영수증 및 처방전 출력",
+    "ui": {
+      "images": [
+        {
+          "image": "images/병원영수증.jpg",
+          "message": "영수증이 출력됩니다."
+        },
+        {
+          "image": "images/처방전.png",
+          "message": "처방전이 출력됩니다."
+        }
+      ],
+      "final_message": "수고하셨습니다. 미션 성공입니다!"
+    },
+    "helper_message": "출력물이 2장 나옵니다. 영수증과 처방전을 모두 챙기세요.",
+    "end": true,
+    "next_step": 200
+  },
+  {
+    "step": 340,
+    "type": "처방전만 출력",
+    "ui": {
+      "image": "images/처방전.png",
+      "message": "처방전만 출력됩니다.",
+      "final_message": "수고하셨습니다. 미션 성공입니다!"
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "end": true,
+    "next_step": 200
+  },
+  {
+    "step": 403,
+    "type": "병원 키오스크 자유학습 시작",
+    "situation": "병원 키오스크 – 자유학습 버튼 > 병원 키오스크 연습 버튼 눌렀을 시 시나리오",
+    "instruction": "병원 키오스크 자유학습을 시작합니다. 아래에서 병원 유형을 선택하세요.",
+    "helper_message": "연습하고 싶은 유형의 병원을 선택 하세요",
+    "options": [
+      {
+        "label": "개인병원",
+        "next_step": 404
+      },
+      {
+        "label": "종합병원",
+        "next_step": 414
+      }
+    ]
+  },
+  {
+    "step": 404,
+    "type": "개인병원 접수 시작",
+    "situation": "개인병원 버튼 눌렀을 시 바로 시작",
+    "instruction": "접수를 시작합니다. 전화번호를 입력해주세요.",
+    "helper_message": "개인정보 수집 동의 체크 후 전화번호를 입력하세요.",
+    "ui": {
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "입력완료"
+      ]
+    },
+    "validation": {
+      "checkbox": true
+    },
+    "next_step": 405
+  },
+  {
+    "step": 405,
+    "type": "접수자 선택",
+    "ui": {
+      "text": "접수할 환자를 선택해주세요.",
+      "buttons": [
+        "환자 선택"
+      ]
+    },
+    "helper_message": "화면에 표시된 환자 목록에서 접수할 환자를 선택하세요.",
+    "next_step": 406
+  },
+  {
+    "step": 406,
+    "type": "진료실 선택",
+    "ui": {
+      "text": "진료실을 선택해주세요.",
+      "buttons": [
+        "진료실 1"
+      ]
+    },
+    "helper_message": "원하는 진료실을 선택하세요.",
+    "next_step": 407
+  },
+  {
+    "step": 407,
+    "type": "접수 정보 확인",
+    "ui": {
+      "text": "입력한 정보를 확인해주세요.",
+      "buttons": [
+        "입력완료"
+      ]
+    },
+    "helper_message": "정보가 맞다면 입력완료를 눌러주세요.",
+    "next_step": 408
+  },
+  {
+    "step": 408,
+    "type": "영수증 출력 여부 확인",
+    "instruction": "접수증과 함께 영수증도 출력하시겠습니까?",
+    "options": [
+      {
+        "label": "예",
+        "next_step": 409
+      },
+      {
+        "label": "아니오",
+        "next_step": 410
+      }
+    ],
+    "helper_message": "영수증이 필요하시면 '예', 필요 없으시면 '아니오'를 선택해주세요."
+  },
+  {
+    "step": 409,
+    "type": "접수증 및 영수증 출력",
+    "ui": {
+      "images": [
+        {
+          "image": "images/병원 접수증.jpg",
+          "message": "접수증이 출력됩니다."
+        },
+        {
+          "image": "images/병원영수증.jpg",
+          "message": "영수증이 출력됩니다."
+        }
+      ]
+    },
+    "helper_message": "출력물을 모두 챙기세요.",
+    "next_step": 411
+  },
+  {
+    "step": 410,
+    "type": "접수증만 출력",
+    "ui": {
+      "image": "images/병원 접수증.jpg",
+      "message": "접수증만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 411
+  },
+  {
+    "step": 411,
+    "type": "접수 완료 및 수납 이동",
+    "instruction": "접수가 완료되었습니다. 이제 수납을 진행해주세요.",
+    "ui": {
+      "text": "접수가 완료되었습니다. 자동으로 수납으로 이동합니다."
+    },
+    "helper_message": "수납 화면으로 자동 이동 중입니다...",
+    "next_step": 420
+  },
+  {
+    "step": 420,
+    "type": "개인병원 – 수납 시작",
+    "situation": "개인병원 – 수납 시작",
+    "instruction": "휴대폰 번호를 입력하고 개인정보 수집 동의에 체크해주세요.",
+    "helper_message": "휴대폰 번호를 입력한 후, 개인정보 수집 동의란에 반드시 체크해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다.",
+    "validation": {
+      "required_check": [
+        "개인정보 수집 동의"
+      ]
+    },
+    "ui": {
+      "fields": [
+        "휴대폰 번호"
+      ],
+      "checkboxes": [
+        "개인정보 수집 동의"
+      ],
+      "buttons": [
+        "입력완료",
+        "뒤로가기"
+      ]
+    },
+    "next_step": 421
+  },
+  {
+    "step": 421,
+    "type": "수납 정보 확인",
+    "situation": "개인병원 – 수납 정보 확인",
+    "instruction": "결제 정보를 확인하고 필요한 경우 보험 서류를 선택해주세요.",
+    "helper_message": "결제 정보를 확인하고 보험서류가 필요한 경우 '선택하기' 버튼을 눌러주세요. 바로 결제할 경우 '카드결제' 버튼을 눌러주세요.",
+    "ui": {
+      "info": {
+        "진료일자": "202*.07.06",
+        "결제금액": "5400원",
+        "처방전": "출력",
+        "보험제출서류": "선택하기"
+      },
+      "buttons": [
+        "선택하기",
+        "카드결제"
+      ]
+    },
+    "next_step": 422
+  },
+  {
+    "step": 422,
+    "type": "보험 서류 선택",
+    "situation": "개인병원 – 보험 서류 선택",
+    "instruction": "필요한 서류를 선택하고 선택 완료 버튼을 눌러주세요.",
+    "helper_message": "필요한 서류를 선택한 후 선택 완료 버튼을 눌러주세요.",
+    "ui": {
+      "options": [
+        "진료비영수증",
+        "환자보관용처방전"
+      ],
+      "buttons": [
+        "선택완료"
+      ]
+    },
+    "next_step": 423
+  },
+  {
+    "step": 423,
+    "type": "카드 결제",
+    "situation": "개인병원 – 카드 결제",
+    "instruction": "카드를 클릭하면 결제됩니다.",
+    "helper_message": "키오스크의 카드 리더기에 카드를 넣으면 결제됩니다.",
+    "ui": {
+      "text": "카드를 클릭하면 결제됩니다.",
+      "buttons": [
+        "결제하기"
+      ]
+    },
+    "next_step": 424
+  },
+  {
+    "step": 424,
+    "type": "영수증 출력 여부 확인",
+    "situation": "개인병원 – 수납 출력물 선택",
+    "instruction": "영수증도 함께 출력하시겠습니까?",
+    "helper_message": "영수증과 처방전이 모두 필요한 경우 '예', 처방전만 필요한 경우 '아니오'를 선택해주세요.",
+    "options": [
+      {
+        "label": "예",
+        "next_step": 425
+      },
+      {
+        "label": "아니오",
+        "next_step": 426
+      }
+    ]
+  },
+  {
+    "step": 425,
+    "type": "영수증 및 처방전 출력",
+    "ui": {
+      "images": [
+        {
+          "image": "images/병원영수증.jpg",
+          "message": "영수증이 출력됩니다."
+        },
+        {
+          "image": "images/처방전.png",
+          "message": "처방전이 출력됩니다."
+        }
+      ]
+    },
+    "helper_message": "출력물이 2장 나옵니다. 영수증과 처방전을 모두 챙기세요.",
+    "next_step": 427
+  },
+  {
+    "step": 426,
+    "type": "처방전만 출력",
+    "ui": {
+      "image": "images/처방전.png",
+      "message": "처방전만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 427
+  },
+  {
+    "step": 427,
+    "type": "자유학습 종료",
+    "instruction": "개인병원 수납 시나리오가 종료되었습니다.",
+    "summary_message": "현재 개인병원 수납 시나리오가 종료되었습니다. 이후에는 종합병원 키오스크 또는 타 기능을 연습할 수 있습니다.",
+    "helper_message": "이제 다른 기능을 연습하거나 종료할 수 있습니다.",
+    "ui": {
+      "text": "연습이 모두 완료되었습니다. 메인 화면으로 돌아가주세요.",
+      "buttons": [
+        "홈버튼"
+      ]
+    },
+    "end": true,
+    "돌아가기": 403
+  },
+  {
+    "step": 430,
+    "type": "전화번호 입력",
+    "situation": "자유학습/종합병원/접수 시작",
+    "instruction": "휴대폰 번호를 입력하고 개인정보 수집 동의에 체크해주세요.",
+    "helper_message": "전화번호를 입력하고 개인정보 수집 동의 체크박스를 클릭해주세요. 체크하지 않으면 다음 단계로 진행할 수 없습니다.",
+    "validation": {
+      "checkbox": true
+    },
+    "ui": {
+      "text_input": "휴대폰 번호 입력",
+      "checkbox": "개인정보 수집 동의(필수)",
+      "buttons": [
+        "입력완료"
+      ]
+    },
+    "next_step": 431
+  },
+  {
+    "step": 431,
+    "type": "접수자 선택",
+    "situation": "자유학습/종합병원/접수자 선택",
+    "instruction": "접수할 환자를 선택해주세요.",
+    "helper_message": "화면에 표시된 환자 목록에서 접수할 환자를 선택하세요.",
+    "ui": {
+      "text": "접수할 환자를 선택해주세요.",
+      "buttons": [
+        "환자 선택"
+      ]
+    },
+    "next_step": 432
+  },
+  {
+    "step": 432,
+    "type": "진료실 선택",
+    "situation": "자유학습/종합병원/진료실 선택",
+    "instruction": "진료실을 선택해주세요.",
+    "helper_message": "접수하고자 하는 진료과의 진료실을 선택해주세요.",
+    "ui": {
+      "text": "진료실을 선택해주세요.",
+      "buttons": [
+        "진료실 1",
+        "진료실 2"
+      ]
+    },
+    "next_step": 433
+  },
+  {
+    "step": 433,
+    "type": "접수 정보 확인",
+    "situation": "자유학습/종합병원/접수 정보 확인",
+    "instruction": "입력한 정보를 확인해주세요.",
+    "helper_message": "정보가 맞다면 입력완료를 눌러주세요.",
+    "ui": {
+      "text": "입력한 정보를 확인해주세요.",
+      "buttons": [
+        "입력완료"
+      ]
+    },
+    "next_step": 434
+  },
+  {
+    "step": 434,
+    "type": "영수증 출력 여부 확인",
+    "situation": "자유학습/종합병원/영수증 출력 선택",
+    "instruction": "접수증과 함께 영수증도 출력하시겠습니까?",
+    "helper_message": "영수증이 필요하시면 '예', 필요 없으시면 '아니오'를 선택해주세요.",
+    "options": [
+      {
+        "label": "예",
+        "next_step": 435
+      },
+      {
+        "label": "아니오",
+        "next_step": 436
+      }
+    ]
+  },
+  {
+    "step": 435,
+    "type": "접수증 및 영수증 출력",
+    "situation": "자유학습/종합병원/접수 완료 (영수증 포함)",
+    "ui": {
+      "images": [
+        {
+          "image": "images/병원 접수증.jpg",
+          "message": "접수증이 출력됩니다."
+        },
+        {
+          "image": "images/병원영수증.jpg",
+          "message": "영수증이 출력됩니다."
+        }
+      ]
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 437
+  },
+  {
+    "step": 436,
+    "type": "접수증만 출력",
+    "situation": "자유학습/종합병원/접수 완료 (접수증만)",
+    "ui": {
+      "image": "images/병원 접수증.jpg",
+      "message": "접수증만 출력됩니다."
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "next_step": 437
+  },
+  {
+    "step": 437,
+    "type": "수납 선택 유도",
+    "situation": "자유학습/종합병원/수납 유도",
+    "ui": {
+      "text": "진료비를 내기 위해 수납 버튼을 눌러주세요.",
+      "buttons": [
+        "수납"
+      ]
+    },
+    "helper_message": "진료비를 내기 위해 수납 버튼을 눌러주세요.",
+    "next_step": 438
+  },
+  {
+    "step": 438,
+    "type": "바코드 스캔",
+    "situation": "자유학습/종합병원/바코드 스캔",
+    "ui": {
+      "text": "접수증을 가지고 계신 분은 바코드를 스캔해주세요.",
+      "image": [
+        "images/barcode_scanner.png",
+        "images/병원 접수증.jpg"
+      ]
+    },
+    "helper_message": "접수증에 인쇄된 바코드를 바코드 스캐너에 읽혀주세요.",
+    "next_step": 439
+  },
+  {
+    "step": 439,
+    "type": "수납 결제 정보 확인",
+    "situation": "자유학습/종합병원/수납 정보 확인",
+    "ui": {
+      "info": {
+        "진료일자": "202*.07.06",
+        "결제금액": "5400원",
+        "처방전": "출력",
+        "보험제출서류": "선택하기"
+      },
+      "buttons": [
+        "선택하기",
+        "카드결제"
+      ]
+    },
+    "helper_message": "보험 제출용 서류가 필요한 경우 '선택하기' 버튼을 눌러주세요.",
+    "next_step": 440
+  },
+  {
+    "step": 440,
+    "type": "보험서류 선택",
+    "situation": "자유학습/종합병원/보험 서류 선택",
+    "ui": {
+      "options": [
+        "진료비영수증",
+        "진료비세부내역서",
+        "환자보관용처방전"
+      ],
+      "multi_select": true,
+      "buttons": [
+        "선택완료"
+      ]
+    },
+    "helper_message": "필요한 서류를 선택하고 선택 완료 버튼을 눌러주세요.",
+    "next_step": 441
+  },
+  {
+    "step": 441,
+    "type": "카드결제",
+    "situation": "자유학습/종합병원/카드 결제",
+    "ui": {
+      "image": "images/sample_credit_card.jpg",
+      "image2": "images/card_reader.png",
+      "message": "카드를 클릭하면 결제됩니다."
+    },
+    "helper_message": "카드를 클릭하면 결제됩니다.",
+    "next_step": 442
+  },
+  {
+    "step": 442,
+    "type": "영수증 출력 여부 선택",
+    "situation": "자유학습/종합병원/영수증 출력 여부",
+    "ui": {
+      "text": "영수증을 출력하시겠습니까?",
+      "buttons": [
+        "예",
+        "아니오"
+      ]
+    },
+    "helper_message": "영수증 출력이 필요한 경우 '예'를 선택하세요.",
+    "options": [
+      {
+        "button_text": "예",
+        "next_step": 443
+      },
+      {
+        "button_text": "아니오",
+        "next_step": 444
+      }
+    ]
+  },
+  {
+    "step": 443,
+    "type": "영수증 및 처방전 출력",
+    "situation": "자유학습/종합병원/영수증 및 처방전 출력",
+    "ui": {
+      "images": [
+        "images/병원영수증.jpg",
+        "images/처방전.png"
+      ],
+      "message": "먼저 영수증이 출력되고, 이어서 처방전이 출력됩니다.",
+      "buttons": [
+        "화면에 돌아가기"
+      ]
+    },
+    "helper_message": "출력물이 2장 나옵니다. 영수증과 처방전을 모두 챙기세요.",
+    "options": [
+      {
+        "label": "화면에 돌아가기",
+        "next_step": 200
+      }
+    ],
+    "end_scenario": true,
+    "end": false
+  },
+  {
+    "step": 444,
+    "type": "처방전만 출력",
+    "situation": "자유학습/종합병원/처방전만 출력",
+    "ui": {
+      "image": "images/처방전.png",
+      "message": "처방전만 출력됩니다.",
+      "buttons": [
+        "화면에 돌아가기"
+      ]
+    },
+    "helper_message": "출력물을 꼭 챙기세요.",
+    "options": [
+      {
+        "label": "화면에 돌아가기",
+        "next_step": 200
+      }
+    ],
+    "end_scenario": true,
+    "end": false
+  }
