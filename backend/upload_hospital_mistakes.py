@@ -27,7 +27,8 @@ db = firestore.client()
 user_id = generate_user_id()
 
 # 4. JSON 경로 설정 (Digital-Helper.new 구조 기준)
-json_path = os.path.join("..", "scenario", "data", "병원키오스크_영수증기능포함_이미지경로적용본.json")
+json_path = os.path.join("..", "scenario", "data", "hospital_kiosk.json")
+
 
 # 5. JSON 로드 및 오답 데이터 생성
 with open(json_path, "r", encoding="utf-8") as f:

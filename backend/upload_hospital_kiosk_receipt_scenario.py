@@ -18,7 +18,9 @@ except ValueError:
 db = firestore.client()
 
 # 2. JSON 파일 경로 (백엔드 기준 상대경로)
-json_path = os.path.join("..", "scenario", "data", "병원키오스크_영수증기능포함_이미지경로적용본.json")
+json_path = os.path.join("..", "scenario", "data", "hospital_kiosk.json")
+
+
 
 # 3. JSON 로드
 with open(json_path, "r", encoding="utf-8") as f:
@@ -37,7 +39,7 @@ def generate_doc_id():
 doc_id = generate_doc_id()
 doc_ref = db.collection(collection_name).document(doc_id)
 doc_ref.set({
-    "source_filename": "병원키오스크_영수증기능포함_이미지경로적용본.json",
+    "source_filename": "hospital_kiosk.json",
     "uploaded_at": datetime.utcnow().isoformat() + "Z",
     "scenario_data": data
 })

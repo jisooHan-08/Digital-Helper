@@ -22,7 +22,7 @@ def generate_user_id():
     return f"{date_part}_{random_part}"
 
 # JSON 경로 및 로드
-with open("../scenario/data/병원키오스크_영수증기능포함_이미지경로적용본.json", encoding="utf-8") as f:
+with open("scenario/data/hospital_kiosk.json", "r", encoding="utf-8") as f:
     scenario_data = json.load(f)
 
 user_id = generate_user_id()
