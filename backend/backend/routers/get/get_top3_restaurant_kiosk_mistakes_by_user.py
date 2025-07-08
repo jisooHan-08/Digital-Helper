@@ -1,3 +1,4 @@
+# 식당 키오스크 사용자별 오답 Top3
 from fastapi import APIRouter, HTTPException, Request
 from collections import Counter
 from firebase_init import db

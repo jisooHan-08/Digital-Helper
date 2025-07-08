@@ -1,3 +1,4 @@
+# 병원 키오스크 오답 저장
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from typing import List

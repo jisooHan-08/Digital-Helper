@@ -1,3 +1,4 @@
+# 타자 연습 격려 메시지 조회
 from fastapi import APIRouter, HTTPException
 from firebase_init import db
 

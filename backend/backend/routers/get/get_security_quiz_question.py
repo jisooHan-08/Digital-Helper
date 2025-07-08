@@ -1,3 +1,4 @@
+# 보안 퀴즈 문제 조회
 from fastapi import APIRouter, HTTPException, Query
 from firebase_init import db
 

@@ -1,3 +1,7 @@
+# 타자 연습 오답 저장 - [단일 오답 저장용 API]
+# 이 라우터는 사용자가 타자 연습 중 문제를 틀렸을 때, 해당 오답 하나를 즉시 Firestore에 저장
+# 통계 목적이 아닌 개별 오답 저장에 특화
+
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from datetime import datetime

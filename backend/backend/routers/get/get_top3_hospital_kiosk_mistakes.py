@@ -1,3 +1,4 @@
+# 병원 키오스크 최다 오답 Top3
 from fastapi import APIRouter, HTTPException, Request
 from firebase_admin import firestore
 from collections import Counter

@@ -1,3 +1,4 @@
+# 타자연습 최다 오답 Top3
 from fastapi import APIRouter, HTTPException
 from collections import Counter
 from firebase_init import db

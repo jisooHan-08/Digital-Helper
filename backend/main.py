@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # 실제 사용하는 라우터만 import
 from backend.routers.get import (
     get_hospital_kiosk_db_steps,
+    get_restaurant_kiosk_db_steps,
     get_security_quiz_feedback_message,
     get_top3_typing_mistake_stats,
     get_typing_encouragement,
@@ -11,9 +12,13 @@ from backend.routers.get import (
     get_hospital_kiosk_mistake_feedback,
     get_restaurant_kiosk_mistake_feedback,
     get_top3_restaurant_kiosk_mistakes_by_user,
+    get_top3_hospital_kiosk_mistakes,
     get_security_mistake_feedback,
     get_top3_security_mistakes,
     get_security_quiz_question,
+    get_typing_question,
+    get_typing_result_summary,
+
 
 
 )
@@ -23,6 +28,8 @@ from backend.routers.post import (
     post_typing_mistake_api,
     post_hospital_kiosk_mistake,
     post_restaurant_kiosk_mistake,
+    post_typing_result_by_user,
+
 )
 
 app = FastAPI()
@@ -38,23 +45,27 @@ app.add_middleware(
 
 # GET 라우터 등록
 app.include_router(get_hospital_kiosk_db_steps.router)
+app.include_router(get_restaurant_kiosk_db_steps.router) 
 app.include_router(get_security_quiz_feedback_message.router)
 app.include_router(get_top3_typing_mistake_stats.router)
 app.include_router(get_typing_encouragement.router)
 app.include_router(get_typing_feedback_message.router)
 app.include_router(get_hospital_kiosk_mistake_feedback.router)
 app.include_router(get_restaurant_kiosk_mistake_feedback.router)
+app.include_router(get_top3_hospital_kiosk_mistakes.router)
 app.include_router(get_top3_restaurant_kiosk_mistakes_by_user.router)
 app.include_router(get_security_mistake_feedback.router)
 app.include_router(get_top3_security_mistakes.router)
 app.include_router(get_security_quiz_question.router)
-
+app.include_router(get_typing_question.router)
+app.include_router(get_typing_result_summary.router)
 
 # POST 라우터 등록
 app.include_router(post_typing_mistake_api.router)
 app.include_router(post_security_education_mistake.router)
 app.include_router(post_hospital_kiosk_mistake.router)
 app.include_router(post_restaurant_kiosk_mistake.router)
+app.include_router(post_typing_result_by_user.router)
 
 # 기본 루트 엔드포인트
 @app.get("/")

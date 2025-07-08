@@ -1,3 +1,4 @@
+# 식당 키오스크 오답 피드백 조회
 from fastapi import APIRouter, HTTPException, Request
 from firebase_init import db
 

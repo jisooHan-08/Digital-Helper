@@ -1,4 +1,5 @@
 # get_typing_feedback_message.py
+# 타자 연습 피드백 메시지 조회
 
 from fastapi import APIRouter, HTTPException, Query
 from firebase_init import db

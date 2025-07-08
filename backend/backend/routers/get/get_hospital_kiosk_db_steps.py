@@ -1,3 +1,4 @@
+# 병원 키오스크 시나리오 단계 조회
 # routers/get/get_hospital_kiosk_db_steps.py
 from fastapi import APIRouter, HTTPException
 import firebase_admin
