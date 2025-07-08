@@ -148,7 +148,7 @@
   {
     "step": 108,
     "instruction": "카드를 넣어주세요.",
-    "helper_message": "화면의 카드 그림을 결제 단말기에 드래그하세요.",
+    "helper_message": "카드를 단말기에 넣어 결제를 진행해주세요.",
     "next_step": 110
   },
   {
