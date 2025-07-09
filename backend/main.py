@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # 실제 사용하는 라우터만 import
 from backend.routers.get import (
+    get_main_screen_entry,
+    get_main_screen_idle_message,
     get_hospital_kiosk_db_steps,
     get_restaurant_kiosk_db_steps,
     get_security_quiz_feedback_message,
@@ -44,6 +46,8 @@ app.add_middleware(
 )
 
 # GET 라우터 등록
+app.include_router(get_main_screen_entry.router)
+app.include_router(get_main_screen_idle_message.router)
 app.include_router(get_hospital_kiosk_db_steps.router)
 app.include_router(get_restaurant_kiosk_db_steps.router) 
 app.include_router(get_security_quiz_feedback_message.router)
