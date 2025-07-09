@@ -1,5 +1,6 @@
 # 병원 키오스크 시나리오 단계 조회
 # routers/get/get_hospital_kiosk_db_steps.py
+from fastapi.responses import JSONResponse
 from fastapi import APIRouter, HTTPException
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -24,9 +25,8 @@ def get_all_hospital_steps():
     if not all_steps:
         raise HTTPException(status_code=404, detail="시나리오 데이터가 존재하지 않습니다.")
 
-    # step_index 기준으로 정렬
     sorted_steps = sorted(all_steps, key=lambda x: x.get("step_index", 0))
-    return {"steps": sorted_steps}
+    return JSONResponse(content={"steps": sorted_steps}, media_type="application/json; charset=utf-8")
 
 # 2. 특정 step_index로 조회
 @router.get("/hospital_kiosk/db_steps/{step_index}")
@@ -37,4 +37,4 @@ def get_hospital_step(step_index: int):
     if not step_list:
         raise HTTPException(status_code=404, detail=f"{step_index}번 step이 존재하지 않습니다.")
     
-    return step_list[0]  # 정확히 하나만 존재해야 하므로
+    return JSONResponse(content=step_list[0], media_type="application/json; charset=utf-8")

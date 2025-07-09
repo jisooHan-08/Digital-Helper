@@ -3,6 +3,7 @@
 # 해당 결과에 해당하는 문제 목록만 필터링해서 반환
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse  
 from firebase_init import db
 
 router = APIRouter()
@@ -18,12 +19,15 @@ def get_typing_review_by_result(user_id: str, result_type: str):
         result_list = data.get("result_list", [])
         filtered = [item for item in result_list if item.get("result") == result_type]
 
-        return {
-            "status": "success",
-            "result_type": result_type,
-            "count": len(filtered),
-            "problems": filtered
-        }
+        return JSONResponse(
+            content={
+                "status": "success",
+                "result_type": result_type,
+                "count": len(filtered),
+                "problems": filtered
+            },
+            media_type="application/json; charset=utf-8"  # 한글 깨짐 방지
+        )
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

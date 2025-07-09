@@ -1,5 +1,6 @@
 #보안 퀴즈 오답 피드백 조회
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse  
 from firebase_init import db
 
 router = APIRouter()
@@ -17,8 +18,12 @@ def get_security_mistake_feedback(request: Request):
         raise HTTPException(status_code=404, detail=f"{user_id}에 대한 오답 기록이 없습니다.")
 
     data = doc.to_dict()
-    return {
-        "user_id": user_id,
-        "wrong_cases": data.get("wrong_cases", []),
-        "timestamp": data.get("timestamp")
-    }
+    return JSONResponse(
+        content={
+            "user_id": user_id,
+            "wrong_cases": data.get("wrong_cases", []),
+            "timestamp": data.get("timestamp")
+        },
+        media_type="application/json; charset=utf-8"  # 한글 깨짐 방지
+    )
+

@@ -1,5 +1,6 @@
 # 식당 키오스크 오답 피드백 조회
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse  
 from firebase_init import db
 
 router = APIRouter()
@@ -11,14 +12,16 @@ def get_restaurant_kiosk_mistake_feedback(request: Request):
     if not user_id:
         raise HTTPException(status_code=400, detail="user-id 헤더가 누락되었습니다.")
 
-    # 문서 조회
     doc = db.collection("restaurant_kiosk_mistakesbackup_byuser").document(user_id).get()
 
     if not doc.exists:
         raise HTTPException(status_code=404, detail=f"{user_id}에 해당하는 오답 기록이 없습니다.")
 
     data = doc.to_dict()
-    return {
-        "user_id": user_id,
-        "wrong_selections": data.get("wrong_selections", [])
-    }
+    return JSONResponse(
+        content={
+            "user_id": user_id,
+            "wrong_selections": data.get("wrong_selections", [])
+        },
+        media_type="application/json; charset=utf-8"  # 한글 깨짐 방지
+    )

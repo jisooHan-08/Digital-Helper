@@ -1,5 +1,6 @@
 # 식당 키오스크 사용자별 오답 Top3
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse  
 from collections import Counter
 from firebase_init import db
 
@@ -20,7 +21,6 @@ def get_top3_restaurant_mistakes(request: Request):
     data = doc.to_dict()
     mistakes = data.get("wrong_selections", [])
 
-    # 질문 + 선택 기준으로 카운트
     counter = Counter()
     for item in mistakes:
         question = item.get("question")
@@ -29,7 +29,6 @@ def get_top3_restaurant_mistakes(request: Request):
             key = f"{question} (선택: {selected})"
             counter[key] += 1
 
-    # 상위 3개 추출
     top3 = counter.most_common(3)
 
     result = {
@@ -40,4 +39,7 @@ def get_top3_restaurant_mistakes(request: Request):
         ]
     }
 
-    return result
+    return JSONResponse(
+        content=result,
+        media_type="application/json; charset=utf-8"  # 한글 처리
+    )

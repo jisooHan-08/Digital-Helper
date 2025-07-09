@@ -2,6 +2,7 @@
 # 타자 연습 피드백 메시지 조회
 
 from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import JSONResponse  
 from firebase_init import db
 
 router = APIRouter()
@@ -16,6 +17,10 @@ def get_typing_feedback(level: str = Query(...), accuracy: str = Query(...)):
     doc = db.collection("typing_feedback_messages").document(doc_id).get()
 
     if doc.exists:
-        return doc.to_dict()
+        return JSONResponse(
+            content=doc.to_dict(),
+            media_type="application/json; charset=utf-8"  # 한글 깨짐 방지
+        )
     else:
         raise HTTPException(status_code=404, detail="해당 조건의 피드백 메시지를 찾을 수 없습니다.")
+

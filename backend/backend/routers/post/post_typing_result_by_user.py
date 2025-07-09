@@ -3,8 +3,8 @@
 # 사용자가 타자 연습을 완료한 뒤, 여러 문제들의 결과를 한 번에 Firestore에 저장
 # 사용자의 전체 연습 결과를 분석 및 통계 목적으로 저장 - (post_typing_mistake_api.py)와 병행 사용
 
-
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse  
 from pydantic import BaseModel
 from typing import List, Literal
 from datetime import datetime, timezone
@@ -27,6 +27,11 @@ class TypingResultUploadRequest(BaseModel):
 # 3. 결과 저장 라우터
 @router.post("/typing_result_by_user")
 def upload_typing_result(data: TypingResultUploadRequest):
+    """
+    타자 연습 결과 업로드 API
+    - 기존 결과에 누적 저장됨
+    - user_id는 자동 생성한 ID 기반
+    """
     try:
         doc_ref = db.collection("typing_result_by_user").document(data.user_id)
 
@@ -50,7 +55,15 @@ def upload_typing_result(data: TypingResultUploadRequest):
             "result_list": result_list
         })
 
-        return {"status": "success", "message": "타자 연습 결과가 저장되었습니다."}
+        return JSONResponse(  # 한글 깨짐 방지
+            content={
+                "status": "success",
+                "user_id": data.user_id,
+                "total_results": len(result_list),
+                "message": "타자 연습 결과가 저장되었습니다."
+            },
+            media_type="application/json; charset=utf-8"
+        )
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

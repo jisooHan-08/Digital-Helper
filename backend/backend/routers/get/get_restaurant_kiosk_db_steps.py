@@ -3,6 +3,7 @@
 # helper_message, text, buttons, type, next 등의 흐름 정보 제공
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse  
 from firebase_init import db
 
 router = APIRouter()
@@ -24,6 +25,10 @@ def get_restaurant_kiosk_steps():
         if not steps:
             raise HTTPException(status_code=404, detail="식당 키오스크 시나리오가 없습니다.")
 
-        return {"steps": steps}
+        return JSONResponse(
+            content={"steps": steps},
+            media_type="application/json; charset=utf-8"  # 한글 깨짐 방지
+        )
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

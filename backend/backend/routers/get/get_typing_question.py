@@ -1,12 +1,12 @@
 # routers/get/get_typing_question.py
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse  
 from firebase_admin import firestore
-from firebase_init import db  # 이미 initialize_app() 되어 있다고 가정
+from firebase_init import db
 
 router = APIRouter()
 
-# mode => 컬렉션 이름 매핑
 MODE_COLLECTION_MAP = {
     "one": "typing_practice_one_letter_questions",
     "two": "typing_practice_two_letter_questions",
@@ -15,7 +15,6 @@ MODE_COLLECTION_MAP = {
     "paragraph": "typing_practice_paragraph_questions",
 }
 
-# 특정 타자 연습 문제(step)를 가져오는 라우터
 @router.get("/typing_question/{mode}/{step_id}")
 def get_typing_question(mode: str, step_id: str):
     """
@@ -34,7 +33,10 @@ def get_typing_question(mode: str, step_id: str):
         if not doc.exists:
             raise HTTPException(status_code=404, detail="해당 문제(step)가 존재하지 않습니다.")
 
-        return doc.to_dict()
+        return JSONResponse(
+            content=doc.to_dict(),
+            media_type="application/json; charset=utf-8"  # 한글 깨짐 방지
+        )
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

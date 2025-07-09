@@ -1,10 +1,11 @@
 # 병원 키오스크 오답 저장
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse  
 from pydantic import BaseModel
 from typing import List
 from datetime import datetime, timezone
 
-from firebase_init import db  # firebase_admin.initialize_app()는 이미 이 모듈에 존재
+from firebase_init import db  
 
 router = APIRouter()
 
@@ -39,7 +40,10 @@ def upload_hospital_kiosk_mistake(request: Request, data: MistakeUploadRequest):
 
     doc_ref.set({"wrong_selections": wrong_list})
 
-    return {
-        "message": f"{len(data.wrong_selections)}개의 오답이 저장되었습니다.",
-        "user_id": user_id
-    }
+    return JSONResponse(
+        content={
+            "message": f"{len(data.wrong_selections)}개의 오답이 저장되었습니다.",
+            "user_id": user_id
+        },
+        media_type="application/json; charset=utf-8"  # 한글 인코딩
+    )

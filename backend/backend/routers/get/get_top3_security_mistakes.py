@@ -1,5 +1,6 @@
 # 보안 퀴즈 최다 오답 Top3
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse  
 from collections import Counter
 from firebase_init import db
 
@@ -20,7 +21,6 @@ def get_top3_security_mistakes(request: Request):
     data = doc.to_dict()
     wrong_cases = data.get("wrong_cases", [])
 
-    # mistake 필드 기준으로 카운트
     counter = Counter()
     for item in wrong_cases:
         mistake = item.get("mistake")
@@ -37,4 +37,7 @@ def get_top3_security_mistakes(request: Request):
         ]
     }
 
-    return result
+    return JSONResponse(
+        content=result,
+        media_type="application/json; charset=utf-8"  # 한글 인코딩 
+    )

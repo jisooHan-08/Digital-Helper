@@ -1,5 +1,6 @@
 # 식당 키오스크 오답 저장
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse  
 from pydantic import BaseModel
 from typing import List
 from datetime import datetime, timezone
@@ -49,7 +50,10 @@ def upload_restaurant_kiosk_mistake(request: Request, data: MistakeUploadRequest
         "wrong_selections": updated_mistakes
     })
 
-    return {
-        "message": f"{user_id}의 오답 기록이 {len(new_entries)}개 추가되었습니다.",
-        "total_mistakes": len(updated_mistakes)
-    }
+    return JSONResponse(  # 응답 메시지 한글 깨짐 방지
+        content={
+            "message": f"{user_id}의 오답 기록이 {len(new_entries)}개 추가되었습니다.",
+            "total_mistakes": len(updated_mistakes)
+        },
+        media_type="application/json; charset=utf-8"
+    )
