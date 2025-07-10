@@ -1,0 +1,137 @@
+목적
+본 가이드는 이 앱을 유지보수하거나 기능을 확장하고자 하는 개발자 또는 기여자를 위한 가이드입니다.
+Firebase, FastAPI, Flutter 기반의 풀스택 구조입니다.
+
+1. 사용한 기술 스택
+| 영역        | 사용 기술  |
+
+| 백엔드    | Python + FastAPI |
+| 데이터베이스 | Firebase Firestore |
+| 프론트엔드  | Flutter (Web으로 테스트 후 Android studio로 최종테스트) |
+| 배포환경   | 로컬 또는 Firebase Hosting 가능 |
+| 기타     | GitHub Actions (선택), Swagger UI, JSON 기반 시나리오 |
+
+2. 폴더 구조 (중요한 디렉토리기준 제시)
+Digital-Helper/
+├── backend/
+│   ├── firebase_init.py
+│   ├── main.py (FastAPI entry)
+│   ├── routers/ (각 기능 라우터)
+│   ├── upload_*.py (JSON 업로드용 스크립트)
+│   └── data/ (정제된 JSON 시나리오 저장)
+├── frontend/
+│   ├── main.dart
+│   ├── screens/ (KioskScreen, TypingScreen 등)
+│   └── services/ (API 연동 로직)
+└── senario/
+    ├── Images ( 데이터와 연동된 이미지 )
+    └── data (실사용 데이터)
+
+3. 백엔드 API 개요
+FastAPI 기반이며 /docs 경로에서 Swagger UI로 확인 가능 ( 최종 Swagger UI : http://127.0.0.1:8000/docs )
+  - 주요 엔드 포인트:
+   병원 키오스크 시나리오 조회	GET	/hospital_kiosk/db_steps
+   오답 업로드	POST	/upload_hospital_mistake
+   오답 통계 조회	GET	/get_hospital_kiosk_mistake_feedback
+   타자 연습 결과 업로드	POST	/upload_typing_result_by_user
+   타자 오답 통계 조회	GET	/get_typing_mistake_feedback
+   보안 퀴즈 피드백 메시지	GET	/get_security_quiz_feedback_message
+- Firestore 구조 (주요 내용 요약)
+  ( 컬렉션 이름 / 용도 )
+  (hospital_kiosk_mistakes_byuser	/ 병원 키오스크 오답 기록 )
+  ( typing_mistakes_byuser /	타자 오답 기록 )
+  ( security_quiz_mistakes_byuser	/ 퀴즈 오답 기록 ) 
+  ( *_encouragements /	각 기능별 격려 메시지 저장 )
+  ( *_steps	JSON  / 시나리오 업로드용 컬렉션 )
+
+4. 로컬 실행 방법
+  - 백엔드 기준 :
+     cd backend
+     uvicorn main:app --reload
+  - 프론트엔드 기준 : 
+     cd frontend
+     flutter run -d chrome
+두 로컬 모두 실행 후 함께 동작하여야 최종 프로젝트의 작동이 가능합니다 
+
+5. 오답 통계 출력 형식 예시 ( 테스트 시 참고 사항 )
+  - 키오스크 (병원):
+    [ 키오스크 연습(병원) ] 가장 많이 틀린 구간은?
+    1) 질문 내용 (선택: 사용자 선택) → 4회
+  - 타자 연습:
+    [ 타자 연습 ] 가장 많이 틀린 문장 Top 3
+    1) 내가 입력한 문장 (틀린 글자 수: 4) → 3회
+  - 보안 퀴즈:
+    [보안퀴즈] 가장 자주 틀린 문제는?
+    1) 질문 내용 → 5회
+    해당 문제 해설: 정답은 (A)이며, ~~
+
+6. 사용자 ID 자동 생성 로직
+   - 형식: 20250710_xxxxx
+   - 구성: 접속 날짜 + 5자리 랜덤 문자열
+      - 6.1. 사용자 ID 생성 방식 (백엔드)
+        from datetime import datetime
+        import random
+        import string
+
+        def generate_user_id():
+            date_part = datetime.now().strftime("%Y%m%d")
+            random_part = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
+            return f"{date_part}_{random_part}"
+      
+      - 6.2. 사용자 ID를 프론트로 전달하는 방식 (API에서 user_id 일관되게 전달)
+            : 프론트엔드에 UserManager 클래스 또는 전역 변수 생성 ,
+             각 API 요청에 항상 HTTP 헤더에 user_id를 함께 넣도록 공통 함수로 감쌈
+            [ 코드 예시 ]
+             class ApiService {
+                  static const baseUrl = "http://127.0.0.1:8000";
+
+                  static Future<http.Response> get(String endpoint) async {
+                     final uri = Uri.parse("$baseUrl/$endpoint");
+                     return await http.get(uri, headers: {
+                        "user-id": userId!,
+                            });
+                           }
+                          }
+
+            - API 모든 요청에서 user_id는 자동 생성되어 헤더에 포함되어 반환
+
+7. 향후 확장 및 수정 예정 사항
+- 현재 업로드 + 사용된 JSON형식의 원시 데이터 파일의 구조적 오류로, 
+  데이터 파싱 및 정제 과정을 통해 오류를 해결할 예정
+- 새로운 기능 추가 시: JSON 기반 시나리오를 만들어 /data/에 업로드 → upload_*.py로 Firestore에 반영
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
