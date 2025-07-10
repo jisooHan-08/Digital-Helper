@@ -1,6 +1,13 @@
-2025/07/06-00:13:54.715 d0c Reusing MANIFEST C:\Users\82109\AppData\Local\Temp\flutter_tools.347c2d3d\flutter_tools_chrome_device.a200d808\Default\shared_proto_db/MANIFEST-000001
-2025/07/06-00:13:54.715 d0c Recovering log #10
-2025/07/06-00:13:54.717 d0c Reusing old log C:\Users\82109\AppData\Local\Temp\flutter_tools.347c2d3d\flutter_tools_chrome_device.a200d808\Default\shared_proto_db/000010.log 
-2025/07/06-00:13:54.717 d0c Delete type=0 #3
-2025/07/06-00:13:54.717 d0c Delete type=0 #4
-2025/07/06-00:13:54.717 d0c Delete type=0 #7
+2025/07/10-03:31:40.223 5f38 Reusing MANIFEST C:\Users\82109\AppData\Local\Temp\flutter_tools.926b607f\flutter_tools_chrome_device.385ed94\Default\shared_proto_db/MANIFEST-000001
+2025/07/10-03:31:40.224 5f38 Recovering log #19
+2025/07/10-03:31:40.225 5f38 Reusing old log C:\Users\82109\AppData\Local\Temp\flutter_tools.926b607f\flutter_tools_chrome_device.385ed94\Default\shared_proto_db/000019.log 
+2025/07/10-03:31:40.225 5f38 Delete type=0 #3
+2025/07/10-03:31:40.226 5f38 Delete type=0 #4
+2025/07/10-03:31:40.226 5f38 Delete type=0 #7
+2025/07/10-03:31:40.226 5f38 Delete type=2 #8
+2025/07/10-03:31:40.226 5f38 Delete type=0 #10
+2025/07/10-03:31:40.226 5f38 Delete type=2 #11
+2025/07/10-03:31:40.226 5f38 Delete type=0 #13
+2025/07/10-03:31:40.226 5f38 Delete type=2 #14
+2025/07/10-03:31:40.226 5f38 Delete type=0 #16
+2025/07/10-03:31:40.226 5f38 Delete type=2 #17

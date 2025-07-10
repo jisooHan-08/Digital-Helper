@@ -3,4 +3,12 @@ windows/flutter/ephemeral/
 *.dll
 *.pdb
 *.exe
+serviceAccountKey.json
+.dart_tool/
+*.log
+*.wal
+# *.json
+*.mp4
+*.db
+Download Service/
 
